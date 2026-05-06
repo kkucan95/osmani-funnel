@@ -1,0 +1,1609 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Garten & Landschaftsbau Osmani – Bietigheim-Bissingen</title>
+  <meta name="description" content="Professioneller Garten- und Landschaftsbau in Bietigheim-Bissingen. Einfahrten, Terrassen, Carports & mehr. Jetzt kostenlos anfragen!" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- ================================================================
+       GOOGLE ANALYTICS 4
+       TODO: G-XXXXXXXXXX ersetzen → https://analytics.google.com
+       Measurement ID findest du unter: Admin → Datenströme → Web-Stream
+  ================================================================ -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
+  <style>
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:       #3a7d44;
+      --green-dark:  #2c6035;
+      --green-light: #4e9e5a;
+      --accent:      #f0a500;
+      --dark:        #1a1f24;
+      --dark-2:      #252b32;
+      --mid:         #4a5568;
+      --light:       #f7f8fa;
+      --white:       #ffffff;
+      --radius:      14px;
+      --shadow:      0 8px 32px rgba(0,0,0,.12);
+      --shadow-lg:   0 20px 60px rgba(0,0,0,.18);
+      --transition:  .35s cubic-bezier(.4,0,.2,1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--dark);
+      background: var(--white);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a   { color: inherit; text-decoration: none; }
+
+    /* ============================================================
+       ANIMATIONS
+    ============================================================ */
+    @keyframes gradientShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes floatOrb {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50%       { transform: translateY(-30px) scale(1.05); }
+    }
+    @keyframes shimmer {
+      0%   { left: -100%; }
+      100% { left: 200%; }
+    }
+    @keyframes pulseRing {
+      0%   { transform: scale(.9); opacity: .8; }
+      70%  { transform: scale(1.15); opacity: 0; }
+      100% { transform: scale(.9); opacity: 0; }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* ============================================================
+       HEADER
+    ============================================================ */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 14px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(26,31,36,.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      transition: var(--transition);
+    }
+    header.scrolled {
+      padding: 10px 5%;
+      background: rgba(26,31,36,.98);
+    }
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-img {
+      height: 44px;
+      width: auto;
+    }
+    .logo-text {
+      color: var(--white);
+      font-size: .85rem;
+      font-weight: 600;
+      line-height: 1.3;
+      max-width: 160px;
+    }
+    nav { display: flex; gap: 28px; }
+    nav a {
+      color: rgba(255,255,255,.8);
+      font-size: .9rem;
+      font-weight: 500;
+      transition: color .2s;
+    }
+    nav a:hover { color: var(--accent); }
+    .header-cta {
+      background: var(--green);
+      color: var(--white) !important;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-weight: 600 !important;
+      transition: background var(--transition), transform var(--transition) !important;
+    }
+    .header-cta:hover {
+      background: var(--green-light) !important;
+      transform: translateY(-1px);
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0f1a12 0%, #1a3020 40%, #0d1f16 70%, #0a1510 100%);
+      background-size: 300% 300%;
+      animation: gradientShift 12s ease infinite;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: .25;
+      pointer-events: none;
+    }
+    .orb-1 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, #3a7d44 0%, transparent 70%);
+      top: -100px; right: -100px;
+      animation: floatOrb 8s ease-in-out infinite;
+    }
+    .orb-2 {
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, #f0a500 0%, transparent 70%);
+      bottom: 50px; left: 5%;
+      animation: floatOrb 10s ease-in-out infinite reverse;
+    }
+    .orb-3 {
+      width: 250px; height: 250px;
+      background: radial-gradient(circle, #4e9e5a 0%, transparent 70%);
+      top: 40%; left: 35%;
+      animation: floatOrb 7s ease-in-out infinite 2s;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 120px 5% 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(58,125,68,.2);
+      border: 1px solid rgba(58,125,68,.4);
+      color: #7ecf8a;
+      font-size: .8rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 50px;
+      margin-bottom: 24px;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+    .badge-dot {
+      width: 6px; height: 6px;
+      background: #7ecf8a;
+      border-radius: 50%;
+      animation: pulseRing 2s ease-out infinite;
+      box-shadow: 0 0 0 0 rgba(126,207,138,.4);
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 22px;
+    }
+    .hero-title .highlight {
+      background: linear-gradient(90deg, #7ecf8a, #f0a500);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,.7);
+      margin-bottom: 36px;
+      max-width: 480px;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--green), var(--green-light));
+      color: var(--white);
+      padding: 16px 34px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: transform var(--transition), box-shadow var(--transition);
+      box-shadow: 0 8px 24px rgba(58,125,68,.45);
+    }
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.25), transparent);
+      animation: shimmer 2.5s infinite 1s;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 36px rgba(58,125,68,.55);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      padding: 16px 34px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 2px solid rgba(255,255,255,.3);
+      transition: var(--transition);
+    }
+    .btn-outline:hover {
+      border-color: var(--white);
+      background: rgba(255,255,255,.08);
+    }
+
+    .hero-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .hero-card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      animation: fadeUp .6s ease both;
+    }
+    .hero-card:nth-child(1) { animation-delay: .2s; }
+    .hero-card:nth-child(2) { animation-delay: .4s; }
+    .hero-card:nth-child(3) { animation-delay: .6s; }
+    .hero-card-icon {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, var(--green), var(--green-light));
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .hero-card-text strong {
+      display: block;
+      color: var(--white);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .hero-card-text span {
+      color: rgba(255,255,255,.6);
+      font-size: .85rem;
+    }
+    .hero-card-number {
+      margin-left: auto;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,.4);
+      font-size: .75rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      animation: fadeUp 1s ease both 1.2s;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(255,255,255,.4), transparent);
+    }
+
+    /* ============================================================
+       TRUST BAR
+    ============================================================ */
+    .trust-bar {
+      background: var(--dark);
+      padding: 22px 5%;
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,.7);
+      font-size: .9rem;
+    }
+    .trust-icon { font-size: 1.2rem; }
+    .trust-item strong { color: var(--white); font-weight: 700; }
+
+    /* ============================================================
+       SECTION BASE
+    ============================================================ */
+    section { padding: 90px 5%; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      font-size: .8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 800;
+      color: var(--dark);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--mid);
+      max-width: 580px;
+      margin-bottom: 50px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-left  { opacity: 0; transform: translateX(-40px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal-right { opacity: 0; transform: translateX(40px);  transition: opacity .7s ease, transform .7s ease; }
+    .reveal-left.visible, .reveal-right.visible { opacity: 1; transform: none; }
+
+    /* ============================================================
+       STATS
+    ============================================================ */
+    .stats { background: var(--light); }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .stat-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 36px 28px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      border-bottom: 4px solid var(--green);
+      transition: transform var(--transition);
+    }
+    .stat-card:hover { transform: translateY(-6px); }
+    .stat-number {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--green);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-suffix { font-size: 1.8rem; }
+    .stat-label { font-size: .95rem; color: var(--mid); font-weight: 500; }
+
+    /* ============================================================
+       SERVICES
+    ============================================================ */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .service-card {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background: var(--white);
+      transition: transform var(--transition), box-shadow var(--transition);
+      cursor: pointer;
+    }
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+    .service-img-wrap {
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+    }
+    .service-img-wrap img { transition: transform .5s ease; }
+    .service-card:hover .service-img-wrap img { transform: scale(1.06); }
+    .service-body { padding: 22px 22px 26px; }
+    .service-body h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--dark);
+    }
+    .service-body p { font-size: .9rem; color: var(--mid); line-height: 1.6; }
+    .service-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 14px;
+      color: var(--green);
+      font-size: .9rem;
+      font-weight: 600;
+      transition: gap var(--transition);
+    }
+    .service-card:hover .service-link { gap: 10px; }
+
+    /* ============================================================
+       WHY US
+    ============================================================ */
+    .why { background: var(--dark); color: var(--white); }
+    .why .section-title { color: var(--white); }
+    .why .section-desc  { color: rgba(255,255,255,.6); }
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .why-features { display: flex; flex-direction: column; gap: 24px; }
+    .why-feature { display: flex; gap: 18px; align-items: flex-start; }
+    .why-icon {
+      width: 52px; height: 52px;
+      background: linear-gradient(135deg, var(--green), var(--green-light));
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .why-text h4 { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+    .why-text p  { font-size: .9rem; color: rgba(255,255,255,.6); line-height: 1.6; }
+
+    .why-testimonial {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius);
+      padding: 36px;
+      backdrop-filter: blur(10px);
+      position: relative;
+    }
+    .why-testimonial::before {
+      content: '"';
+      position: absolute;
+      top: 16px; left: 28px;
+      font-size: 5rem;
+      color: var(--green);
+      line-height: 1;
+      font-family: Georgia, serif;
+      opacity: .5;
+    }
+    .why-testimonial blockquote {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,.85);
+      line-height: 1.75;
+      margin-bottom: 24px;
+      padding-top: 32px;
+    }
+    .why-testimonial-author { display: flex; align-items: center; gap: 14px; }
+    .author-avatar {
+      width: 46px; height: 46px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green), var(--accent));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .author-name  { font-weight: 700; color: var(--white); font-size: .95rem; }
+    .author-meta  { font-size: .82rem; color: rgba(255,255,255,.5); }
+    .stars { color: var(--accent); font-size: 1rem; margin-top: 12px; }
+
+    /* ============================================================
+       PROJECTS – Vorher/Nachher Slider
+    ============================================================ */
+    .projects { background: var(--light); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .project-card {
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--white);
+      box-shadow: var(--shadow);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* Vorher/Nachher Slider */
+    .before-after {
+      position: relative;
+      height: 260px;
+      overflow: hidden;
+      cursor: col-resize;
+      user-select: none;
+    }
+    .ba-after, .ba-before {
+      position: absolute;
+      inset: 0;
+    }
+    .ba-after img, .ba-before img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+    .ba-before {
+      clip-path: inset(0 50% 0 0);
+    }
+    .ba-handle {
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 50%;
+      width: 3px;
+      background: var(--white);
+      transform: translateX(-50%);
+      z-index: 3;
+    }
+    .ba-handle::before {
+      content: '◀ ▶';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--white);
+      color: var(--dark);
+      font-size: .65rem;
+      font-weight: 700;
+      padding: 6px 8px;
+      border-radius: 50px;
+      white-space: nowrap;
+      letter-spacing: .04em;
+      box-shadow: 0 2px 8px rgba(0,0,0,.25);
+    }
+    .ba-label {
+      position: absolute;
+      bottom: 12px;
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      padding: 4px 10px;
+      border-radius: 50px;
+    }
+    .ba-label-before {
+      left: 12px;
+      background: rgba(0,0,0,.55);
+      color: rgba(255,255,255,.85);
+    }
+    .ba-label-after {
+      right: 12px;
+      background: var(--green);
+      color: var(--white);
+    }
+
+    .project-tag {
+      position: absolute;
+      top: 12px; left: 12px;
+      background: var(--green);
+      color: var(--white);
+      font-size: .72rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      z-index: 4;
+    }
+    .project-body { padding: 22px; }
+    .project-body h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+    .project-body p  { font-size: .88rem; color: var(--mid); }
+    .project-meta {
+      display: flex;
+      gap: 16px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--light);
+    }
+    .project-meta span {
+      font-size: .8rem;
+      color: var(--mid);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* ============================================================
+       PROCESS
+    ============================================================ */
+    .process { background: var(--white); }
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 36px;
+      left: calc(12.5%);
+      right: calc(12.5%);
+      height: 2px;
+      background: linear-gradient(90deg, var(--green), var(--green-light));
+      z-index: 0;
+    }
+    .process-step { text-align: center; padding: 0 16px; position: relative; z-index: 1; }
+    .step-num {
+      width: 72px; height: 72px;
+      background: linear-gradient(135deg, var(--green), var(--green-light));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--white);
+      margin: 0 auto 20px;
+      box-shadow: 0 8px 24px rgba(58,125,68,.35);
+    }
+    .step-title { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .step-desc  { font-size: .88rem; color: var(--mid); line-height: 1.6; }
+
+    /* ============================================================
+       CONTACT
+    ============================================================ */
+    .contact { background: var(--dark-2); }
+    .contact .section-title { color: var(--white); }
+    .contact .section-desc  { color: rgba(255,255,255,.6); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 60px;
+      align-items: start;
+    }
+    .contact-info { display: flex; flex-direction: column; gap: 24px; }
+    .contact-item { display: flex; gap: 16px; align-items: flex-start; }
+    .contact-icon {
+      width: 46px; height: 46px;
+      background: var(--green);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .contact-item-text strong { display: block; color: var(--white); font-weight: 600; margin-bottom: 2px; }
+    .contact-item-text span  { color: rgba(255,255,255,.55); font-size: .9rem; }
+    .contact-item-text a     { color: #7ecf8a; font-weight: 700; font-size: 1.05rem; }
+    .contact-item-text a:hover { text-decoration: underline; }
+
+    .contact-form {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius);
+      padding: 36px;
+    }
+    .form-title { font-size: 1.2rem; font-weight: 700; color: var(--white); margin-bottom: 24px; }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+      display: block;
+      font-size: .85rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.7);
+      margin-bottom: 6px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 8px;
+      padding: 12px 16px;
+      color: var(--white);
+      font-size: .95rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(255,255,255,.3); }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--green); }
+    .form-group select option { background: var(--dark); color: var(--white); }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+
+    .form-submit {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      background: linear-gradient(135deg, var(--green), var(--green-light));
+      color: var(--white);
+      border: none;
+      border-radius: 10px;
+      padding: 16px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition);
+      box-shadow: 0 8px 24px rgba(58,125,68,.35);
+      margin-top: 8px;
+    }
+    .form-submit::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 60%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent);
+      animation: shimmer 2.5s infinite 1.5s;
+    }
+    .form-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 36px rgba(58,125,68,.5);
+    }
+    .form-note {
+      text-align: center;
+      color: rgba(255,255,255,.4);
+      font-size: .8rem;
+      margin-top: 12px;
+    }
+    .form-note a { color: rgba(255,255,255,.6); text-decoration: underline; }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .form-success .success-icon { font-size: 3rem; margin-bottom: 16px; }
+    .form-success h3 { font-size: 1.3rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+    .form-success p  { color: rgba(255,255,255,.6); }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background: #0d1117;
+      color: rgba(255,255,255,.5);
+      padding: 48px 5% 32px;
+    }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .footer-brand .logo-text { color: rgba(255,255,255,.8); }
+    .footer-tagline { font-size: .88rem; line-height: 1.7; margin-top: 12px; }
+    .footer-col h4 {
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 16px;
+      letter-spacing: .04em;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a { font-size: .88rem; color: rgba(255,255,255,.5); transition: color .2s; }
+    .footer-col ul li a:hover { color: var(--green-light); }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: .82rem;
+    }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: rgba(255,255,255,.5); transition: color .2s; }
+    .footer-links a:hover { color: var(--white); }
+
+    /* ============================================================
+       FLOATING CTA
+    ============================================================ */
+    .floating-cta {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 999;
+      background: linear-gradient(135deg, var(--green), var(--green-light));
+      color: var(--white);
+      border: none;
+      border-radius: 50px;
+      padding: 14px 24px;
+      font-size: .9rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 28px rgba(58,125,68,.5);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform var(--transition), box-shadow var(--transition);
+      animation: fadeUp .6s ease both 2s;
+    }
+    .floating-cta:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 14px 40px rgba(58,125,68,.6);
+    }
+    .floating-pulse {
+      width: 10px; height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulseRing 1.8s ease-out infinite;
+      box-shadow: 0 0 0 0 rgba(240,165,0,.5);
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1024px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-steps { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+      .process-steps::before { display: none; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      nav { display: none; }
+      .hero-content { grid-template-columns: 1fr; gap: 40px; padding-top: 100px; }
+      .hero-visual { display: none; }
+      .why-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .trust-bar { gap: 24px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-btns { flex-direction: column; }
+      .btn-primary, .btn-outline { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       HEADER
+  ============================================================ -->
+  <header id="header">
+    <div class="logo-wrap">
+      <img
+        src="https://pflasterbau-osmani.de/img/logo.png"
+        alt="Osmani Logo"
+        class="logo-img"
+        onerror="this.style.display='none'"
+      />
+      <div class="logo-text">Garten & Landschaftsbau<br><strong style="color:#7ecf8a">Osmani GmbH</strong></div>
+    </div>
+    <nav>
+      <a href="#leistungen">Leistungen</a>
+      <a href="#projekte">Projekte</a>
+      <a href="#ablauf">Ablauf</a>
+      <a href="#kontakt" class="header-cta">Jetzt anfragen</a>
+    </nav>
+  </header>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="hero" id="home">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <div class="hero-content">
+      <div>
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Bietigheim-Bissingen &amp; Region
+        </div>
+
+        <h1 class="hero-title">
+          Ihr Außenbereich –<br>
+          <span class="highlight">neu gedacht.</span>
+        </h1>
+
+        <p class="hero-sub">
+          Professioneller Garten- und Landschaftsbau mit über 15 Jahren Erfahrung.
+          Einfahrten, Terrassen, Carports, Zäune und Gartengestaltung – alles aus einer Hand.
+        </p>
+
+        <div class="hero-btns">
+          <a href="#kontakt" class="btn-primary">✉ Kostenlos anfragen</a>
+          <a href="#projekte" class="btn-outline">Unsere Projekte →</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="hero-card-icon">🏆</div>
+          <div class="hero-card-text">
+            <strong>Erfahrung</strong>
+            <span>Seit über 15 Jahren im Einsatz</span>
+          </div>
+          <div class="hero-card-number">15+</div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-icon">✅</div>
+          <div class="hero-card-text">
+            <strong>Projekte abgeschlossen</strong>
+            <span>Zufriedene Kunden in der Region</span>
+          </div>
+          <div class="hero-card-number">500+</div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-icon">⭐</div>
+          <div class="hero-card-text">
+            <strong>Kundenbewertung</strong>
+            <span>Ausgezeichnete Qualität</span>
+          </div>
+          <div class="hero-card-number">4.9</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      Mehr entdecken
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TRUST BAR
+  ============================================================ -->
+  <div class="trust-bar">
+    <div class="trust-item"><span class="trust-icon">🛡️</span><span><strong>Versicherter Betrieb</strong></span></div>
+    <div class="trust-item"><span class="trust-icon">📋</span><span><strong>Kostenloser Kostenvoranschlag</strong></span></div>
+    <div class="trust-item"><span class="trust-icon">🔧</span><span><strong>Eigene Fachkräfte</strong> – kein Fremdeinsatz</span></div>
+    <div class="trust-item"><span class="trust-icon">🌿</span><span><strong>Nachhaltige</strong> Materialien</span></div>
+    <div class="trust-item"><span class="trust-icon">📍</span><span>Region <strong>Bietigheim-Bissingen</strong></span></div>
+  </div>
+
+  <!-- ============================================================
+       STATS
+  ============================================================ -->
+  <section class="stats">
+    <div class="section-inner">
+      <div class="stats-grid">
+        <div class="stat-card reveal">
+          <div class="stat-number"><span class="count" data-target="15">0</span><span class="stat-suffix">+</span></div>
+          <div class="stat-label">Jahre Erfahrung</div>
+        </div>
+        <div class="stat-card reveal" style="transition-delay:.1s">
+          <div class="stat-number"><span class="count" data-target="500">0</span><span class="stat-suffix">+</span></div>
+          <div class="stat-label">Abgeschlossene Projekte</div>
+        </div>
+        <div class="stat-card reveal" style="transition-delay:.2s">
+          <div class="stat-number"><span class="count" data-target="98">0</span><span class="stat-suffix">%</span></div>
+          <div class="stat-label">Zufriedene Kunden</div>
+        </div>
+        <div class="stat-card reveal" style="transition-delay:.3s">
+          <div class="stat-number"><span class="count" data-target="6">0</span><span class="stat-suffix"></span></div>
+          <div class="stat-label">Leistungsbereiche</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SERVICES
+  ============================================================ -->
+  <section id="leistungen">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-label">Was wir anbieten</div>
+        <h2 class="section-title">Unsere Leistungen</h2>
+        <p class="section-desc">Von der ersten Idee bis zur fertigen Ausführung – wir gestalten Ihren Außenbereich nach Ihren Wünschen.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card reveal" style="transition-delay:.05s">
+          <div class="service-img-wrap">
+            <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Cx6aHRvNsExLvP81UuCpyGptJQ/hf_20260505_122543_0ff99268-6b5b-4ac2-b6a4-d22a9d9e29a1.png" alt="Einfahrten & Pflasterung" loading="lazy" />
+          </div>
+          <div class="service-body">
+            <h3>Einfahrten &amp; Pflasterung</h3>
+            <p>Hochwertige Pflastersteine, Natursteine und Betonplatten – für eine repräsentative Einfahrt, die langanhaltend überzeugt.</p>
+            <a href="#kontakt" class="service-link">Anfragen →</a>
+          </div>
+        </div>
+
+        <div class="service-card reveal" style="transition-delay:.1s">
+          <div class="service-img-wrap">
+            <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Cx6aHRvNsExLvP81UuCpyGptJQ/hf_20260505_122548_4a6d6725-c13e-4793-972d-5caf8c1f6385.png" alt="Terrassen" loading="lazy" />
+          </div>
+          <div class="service-body">
+            <h3>Terrassen &amp; Wege</h3>
+            <p>Individuelle Terrassengestaltung mit Naturstein, Feinsteinzeug oder Holz – Ihr perfekter Außenwohnraum für alle Jahreszeiten.</p>
+            <a href="#kontakt" class="service-link">Anfragen →</a>
+          </div>
+        </div>
+
+        <div class="service-card reveal" style="transition-delay:.15s">
+          <div class="service-img-wrap">
+            <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Cx6aHRvNsExLvP81UuCpyGptJQ/hf_20260505_122553_500c5f69-ebc7-40d9-ab20-a21ffd81a2a8.png" alt="Carports" loading="lazy" />
+          </div>
+          <div class="service-body">
+            <h3>Carports &amp; Überdachungen</h3>
+            <p>Praktische und stilvolle Carports, Pergolen und Terrassenüberdachungen nach Maß – Schutz trifft Design.</p>
+            <a href="#kontakt" class="service-link">Anfragen →</a>
+          </div>
+        </div>
+
+        <div class="service-card reveal" style="transition-delay:.2s">
+          <div class="service-img-wrap">
+            <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Cx6aHRvNsExLvP81UuCpyGptJQ/hf_20260505_122556_d34c628a-b223-4ea6-ba3c-d1b438f367ce.png" alt="Zaunbau" loading="lazy" />
+          </div>
+          <div class="service-body">
+            <h3>Zäune &amp; Sichtschutz</h3>
+            <p>Zaunbau und Sichtschutzlösungen in Holz, Metall oder Kunststoff – privat, sicher und optisch ansprechend.</p>
+            <a href="#kontakt" class="service-link">Anfragen →</a>
+          </div>
+        </div>
+
+        <div class="service-card reveal" style="transition-delay:.25s">
+          <div class="service-img-wrap">
+            <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Cx6aHRvNsExLvP81UuCpyGptJQ/hf_20260505_122607_c63fa931-3bcd-4f2b-af9e-d0109f1ceee7.png" alt="Gartengestaltung" loading="lazy" />
+          </div>
+          <div class="service-body">
+            <h3>Gartengestaltung</h3>
+            <p>Ganzheitliche Gartenplanung und -pflege: Bepflanzung, Rasenflächen, Beete und Mauern – Ihr Traumgarten wird Realität.</p>
+            <a href="#kontakt" class="service-link">Anfragen →</a>
+          </div>
+        </div>
+
+        <div class="service-card reveal" style="transition-delay:.3s">
+          <div class="service-img-wrap">
+            <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Cx6aHRvNsExLvP81UuCpyGptJQ/hf_20260505_122611_44788eb5-9df8-42f1-8c86-811f2d4b9d8b.png" alt="Glasfaser & Erdarbeiten" loading="lazy" />
+          </div>
+          <div class="service-body">
+            <h3>Erdarbeiten &amp; Glasfaser</h3>
+            <p>Professionelle Erdarbeiten, Kanalbau und Glasfaserverlegung – zuverlässig, sauber und termingerecht ausgeführt.</p>
+            <a href="#kontakt" class="service-link">Anfragen →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHY US
+  ============================================================ -->
+  <section class="why">
+    <div class="section-inner">
+      <div class="why-grid">
+        <div>
+          <div class="section-label" style="color:#7ecf8a">Warum Osmani?</div>
+          <h2 class="section-title reveal-left">Das sind unsere Stärken</h2>
+          <p class="section-desc reveal-left" style="transition-delay:.1s">Wir stehen für Qualität, Zuverlässigkeit und faire Preise – vom ersten Gespräch bis zur Fertigstellung.</p>
+
+          <div class="why-features">
+            <div class="why-feature reveal-left" style="transition-delay:.15s">
+              <div class="why-icon">📐</div>
+              <div class="why-text">
+                <h4>Individuelle Planung</h4>
+                <p>Jedes Projekt wird individuell geplant und auf Ihre Wünsche und Gegebenheiten abgestimmt.</p>
+              </div>
+            </div>
+            <div class="why-feature reveal-left" style="transition-delay:.22s">
+              <div class="why-icon">⏱️</div>
+              <div class="why-text">
+                <h4>Pünktliche Ausführung</h4>
+                <p>Wir halten Termine ein – Ihr Projekt wird termintreu und sauber abgewickelt.</p>
+              </div>
+            </div>
+            <div class="why-feature reveal-left" style="transition-delay:.29s">
+              <div class="why-icon">💎</div>
+              <div class="why-text">
+                <h4>Hochwertige Materialien</h4>
+                <p>Nur bewährte Markenprodukte und geprüfte Materialien kommen bei unseren Projekten zum Einsatz.</p>
+              </div>
+            </div>
+            <div class="why-feature reveal-left" style="transition-delay:.36s">
+              <div class="why-icon">🤝</div>
+              <div class="why-text">
+                <h4>Faire Preise &amp; Transparenz</h4>
+                <p>Klare Angebote ohne versteckte Kosten. Kostenvoranschlag immer kostenlos und unverbindlich.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="why-testimonial reveal-right">
+          <blockquote>
+            Osmani hat unsere Einfahrt komplett neu gestaltet. Von der Planung bis zur Fertigstellung lief alles reibungslos. Das Ergebnis übertrifft unsere Erwartungen – wir bekommen ständig Komplimente von Nachbarn!
+          </blockquote>
+          <div class="why-testimonial-author">
+            <div class="author-avatar">MK</div>
+            <div>
+              <div class="author-name">Markus &amp; Sandra K.</div>
+              <div class="author-meta">Ludwigsburg · Einfahrt &amp; Terrasse</div>
+            </div>
+          </div>
+          <div class="stars">★★★★★ <span style="color:rgba(255,255,255,.4);font-size:.8rem;margin-left:6px">5/5 Sterne</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PROJECTS – mit Vorher/Nachher Slider (echte Fotos)
+  ============================================================ -->
+  <section class="projects" id="projekte">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-label">Referenzen</div>
+        <h2 class="section-title">Abgeschlossene Projekte</h2>
+        <p class="section-desc">Schieben Sie den Regler – sehen Sie selbst, was wir aus echten Projekten in der Region gemacht haben.</p>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- Projekt 1: Gartengestaltung + Terrasse -->
+        <div class="project-card reveal" style="transition-delay:.05s">
+          <div class="before-after" data-ba>
+            <div class="ba-after"><img src="imgs/p1-nachher.jpg" alt="Fertige Terrasse Feinsteinzeug" /></div>
+            <div class="ba-before"><img src="imgs/p1-vorher.jpg" alt="Gartenräumung Vorher" /></div>
+            <div class="ba-handle"></div>
+            <div class="ba-label ba-label-before">Vorher</div>
+            <div class="ba-label ba-label-after">Nachher</div>
+            <div class="project-tag">Terrasse</div>
+          </div>
+          <div class="project-body">
+            <h3>Terrassengestaltung mit Feinsteinzeug</h3>
+            <p>Komplette Gartenräumung und Neugestaltung – großformatige Feinsteinzeugplatten auf Neubau-Terrasse.</p>
+            <div class="project-meta">
+              <span>📍 Bietigheim-Bissingen</span>
+              <span>⏱ 6 Tage Bauzeit</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Projekt 2: Einfahrt-Sanierung -->
+        <div class="project-card reveal" style="transition-delay:.1s">
+          <div class="before-after" data-ba>
+            <div class="ba-after"><img src="imgs/p2-nachher.jpg" alt="Fertige Terrasse mit Rasenfläche" /></div>
+            <div class="ba-before"><img src="imgs/p2-vorher.jpg" alt="Alte Einfahrt aufgerissen" /></div>
+            <div class="ba-handle"></div>
+            <div class="ba-label ba-label-before">Vorher</div>
+            <div class="ba-label ba-label-after">Nachher</div>
+            <div class="project-tag">Einfahrt</div>
+          </div>
+          <div class="project-body">
+            <h3>Einfahrt &amp; Terrasse komplett neu</h3>
+            <p>Alter Belag komplett entfernt, neues Planum, großformatige Platten und Rasenfläche angelegt.</p>
+            <div class="project-meta">
+              <span>📍 Tamm</span>
+              <span>⏱ 5 Tage Bauzeit</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Projekt 3: Neubau Außenanlagen -->
+        <div class="project-card reveal" style="transition-delay:.15s">
+          <div class="before-after" data-ba>
+            <div class="ba-after"><img src="imgs/p3-nachher.jpg" alt="Fertige Pflasterfläche mit Entwässerung" /></div>
+            <div class="ba-before"><img src="imgs/p3-vorher.jpg" alt="Neubau Rohbau Außenbereich" /></div>
+            <div class="ba-handle"></div>
+            <div class="ba-label ba-label-before">Rohbau</div>
+            <div class="ba-label ba-label-after">Fertig</div>
+            <div class="project-tag">Neubau</div>
+          </div>
+          <div class="project-body">
+            <h3>Neubau-Außenanlagen komplett</h3>
+            <p>Dunkle Pflastersteine, Entwässerungskanäle und Bordsteinarbeiten – fertig in einer Woche.</p>
+            <div class="project-meta">
+              <span>📍 Sachsenheim</span>
+              <span>⏱ 7 Tage Bauzeit</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PROCESS
+  ============================================================ -->
+  <section class="process" id="ablauf">
+    <div class="section-inner">
+      <div class="reveal" style="text-align:center;margin-bottom:60px">
+        <div class="section-label" style="text-align:center">So funktioniert's</div>
+        <h2 class="section-title" style="text-align:center">Ihr Weg zum Traumgarten</h2>
+        <p class="section-desc" style="margin: 0 auto">Einfach, transparent und ohne Stress – so läuft Ihr Projekt bei uns ab.</p>
+      </div>
+
+      <div class="process-steps">
+        <div class="process-step reveal" style="transition-delay:.05s">
+          <div class="step-num">1</div>
+          <h3 class="step-title">Anfrage senden</h3>
+          <p class="step-desc">Füllen Sie unser Kontaktformular aus oder rufen Sie uns an. Kostenfrei und unverbindlich.</p>
+        </div>
+        <div class="process-step reveal" style="transition-delay:.15s">
+          <div class="step-num">2</div>
+          <h3 class="step-title">Beratung &amp; Besichtigung</h3>
+          <p class="step-desc">Wir kommen zu Ihnen, schauen uns die Situation an und besprechen Ihre Wünsche.</p>
+        </div>
+        <div class="process-step reveal" style="transition-delay:.25s">
+          <div class="step-num">3</div>
+          <h3 class="step-title">Angebot erhalten</h3>
+          <p class="step-desc">Sie erhalten ein detailliertes, faires Angebot – transparent und ohne versteckte Kosten.</p>
+        </div>
+        <div class="process-step reveal" style="transition-delay:.35s">
+          <div class="step-num">4</div>
+          <h3 class="step-title">Fertigstellung</h3>
+          <p class="step-desc">Wir führen das Projekt termingerecht und sauber aus. Sie genießen das Ergebnis.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTACT
+  ============================================================ -->
+  <section class="contact" id="kontakt">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-label" style="color:#7ecf8a">Kontakt aufnehmen</div>
+        <h2 class="section-title">Jetzt kostenlos anfragen</h2>
+        <p class="section-desc">Kein Risiko, kein Aufwand – wir melden uns innerhalb von 24 Stunden bei Ihnen.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info reveal-left">
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div class="contact-item-text">
+              <strong>Telefon</strong>
+              <!-- TODO: Echte Telefonnummer eintragen & href anpassen -->
+              <a href="tel:+49XXXXXXXXXX">+49 XXX XXX XXX XX</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <div class="contact-item-text">
+              <strong>E-Mail</strong>
+              <span>info@pflasterbau-osmani.de</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div class="contact-item-text">
+              <strong>Standort</strong>
+              <span>Bietigheim-Bissingen &amp; Umgebung</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🕐</div>
+            <div class="contact-item-text">
+              <strong>Erreichbarkeit</strong>
+              <span>Mo–Fr 7:00–18:00 Uhr</span>
+            </div>
+          </div>
+
+          <div style="background:rgba(58,125,68,.15);border:1px solid rgba(58,125,68,.3);border-radius:12px;padding:24px;margin-top:8px">
+            <div style="font-size:1.4rem;margin-bottom:8px">✅</div>
+            <h4 style="color:#fff;font-weight:700;margin-bottom:6px">Unser Versprechen</h4>
+            <p style="color:rgba(255,255,255,.65);font-size:.9rem;line-height:1.65">
+              Kostenloser Kostenvoranschlag, keine Vorauszahlung und volle Transparenz während des gesamten Projekts.
+            </p>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="contact-form reveal-right">
+          <div class="form-title">Anfrage senden – kostenlos &amp; unverbindlich</div>
+
+          <!-- TODO: YOUR_FORM_ID durch echte Formspree-ID ersetzen
+               Registrierung: https://formspree.io → New Form → Form ID kopieren
+               Beispiel: action="https://formspree.io/f/xpwzgkqr" -->
+          <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fname">Vorname *</label>
+                <input type="text" id="fname" name="vorname" placeholder="Max" required />
+              </div>
+              <div class="form-group">
+                <label for="lname">Nachname *</label>
+                <input type="text" id="lname" name="nachname" placeholder="Mustermann" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">E-Mail *</label>
+                <input type="email" id="email" name="email" placeholder="max@beispiel.de" required />
+              </div>
+              <div class="form-group">
+                <label for="phone">Telefon</label>
+                <input type="tel" id="phone" name="telefon" placeholder="0171 123 456 78" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="service">Gewünschte Leistung</label>
+              <select id="service" name="leistung">
+                <option value="">Bitte wählen...</option>
+                <option>Einfahrt &amp; Pflasterung</option>
+                <option>Terrasse &amp; Wege</option>
+                <option>Carport &amp; Überdachung</option>
+                <option>Zäune &amp; Sichtschutz</option>
+                <option>Gartengestaltung</option>
+                <option>Erdarbeiten &amp; Glasfaser</option>
+                <option>Mehrere Leistungen</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Kurze Projektbeschreibung</label>
+              <textarea id="message" name="nachricht" placeholder="Erzählen Sie uns kurz, was Sie sich vorstellen. Größe, Material-Wünsche, Zeitraum..."></textarea>
+            </div>
+
+            <button type="submit" class="form-submit">
+              ✉ Anfrage absenden – kostenlos &amp; unverbindlich
+            </button>
+            <p class="form-note">
+              Mit dem Absenden stimmen Sie unserer <a href="datenschutz.html">Datenschutzerklärung</a> zu. Keine Weitergabe an Dritte.
+            </p>
+          </form>
+
+          <div class="form-success" id="formSuccess">
+            <div class="success-icon">🎉</div>
+            <h3>Anfrage eingegangen!</h3>
+            <p>Vielen Dank – wir melden uns innerhalb von 24 Stunden bei Ihnen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo-wrap" style="gap:10px">
+            <img src="https://pflasterbau-osmani.de/img/logo.png" alt="Logo" class="logo-img" style="height:36px;width:auto" onerror="this.style.display='none'" />
+            <div class="logo-text" style="color:rgba(255,255,255,.8)">Garten &amp; Landschaftsbau<br><strong style="color:#7ecf8a">Osmani GmbH</strong></div>
+          </div>
+          <p class="footer-tagline">Ihr zuverlässiger Partner für professionellen Garten- und Landschaftsbau in Bietigheim-Bissingen und der Region.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Leistungen</h4>
+          <ul>
+            <li><a href="#leistungen">Einfahrten &amp; Pflasterung</a></li>
+            <li><a href="#leistungen">Terrassen &amp; Wege</a></li>
+            <li><a href="#leistungen">Carports &amp; Überdachungen</a></li>
+            <li><a href="#leistungen">Zäune &amp; Sichtschutz</a></li>
+            <li><a href="#leistungen">Gartengestaltung</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Unternehmen</h4>
+          <ul>
+            <li><a href="#home">Über uns</a></li>
+            <li><a href="#projekte">Referenzen</a></li>
+            <li><a href="#ablauf">Unser Ablauf</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Servicegebiet</h4>
+          <ul>
+            <li><a href="#">Bietigheim-Bissingen</a></li>
+            <li><a href="#">Ludwigsburg</a></li>
+            <li><a href="#">Tamm</a></li>
+            <li><a href="#">Sachsenheim</a></li>
+            <li><a href="#">Vaihingen a.d. Enz</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 Garten &amp; Landschaftsbau Osmani GmbH · Bietigheim-Bissingen</span>
+        <div class="footer-links">
+          <a href="impressum.html">Impressum</a>
+          <a href="datenschutz.html">Datenschutz</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="floating-cta" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'})">
+    <span class="floating-pulse"></span>
+    Kostenlos anfragen
+  </button>
+
+  <!-- ============================================================
+       SCRIPTS
+  ============================================================ -->
+  <script>
+    // --- Header scroll effect ---
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // --- Scroll reveal ---
+    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // --- Animated counters ---
+    function animateCounter(el) {
+      const target = +el.dataset.target;
+      const duration = 1800;
+      const step = target / (duration / 16);
+      let current = 0;
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= target) { current = target; clearInterval(timer); }
+        el.textContent = Math.floor(current);
+      }, 16);
+    }
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { animateCounter(e.target); counterObserver.unobserve(e.target); }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.count').forEach(el => counterObserver.observe(el));
+
+    // --- Vorher/Nachher Slider ---
+    document.querySelectorAll('[data-ba]').forEach(el => {
+      const before = el.querySelector('.ba-before');
+      const handle = el.querySelector('.ba-handle');
+      let dragging = false;
+
+      function setPos(x) {
+        const rect = el.getBoundingClientRect();
+        let pct = Math.max(0, Math.min(100, ((x - rect.left) / rect.width) * 100));
+        before.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
+        handle.style.left = pct + '%';
+      }
+
+      el.addEventListener('mousedown',  e => { dragging = true; setPos(e.clientX); });
+      el.addEventListener('touchstart', e => { dragging = true; setPos(e.touches[0].clientX); }, { passive: true });
+      window.addEventListener('mousemove',  e => { if (dragging) setPos(e.clientX); });
+      window.addEventListener('touchmove',  e => { if (dragging) setPos(e.touches[0].clientX); }, { passive: true });
+      window.addEventListener('mouseup',  () => dragging = false);
+      window.addEventListener('touchend', () => dragging = false);
+    });
+
+    // --- Form submit mit GA4 Lead-Event ---
+    const form = document.getElementById('contactForm');
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = form.querySelector('.form-submit');
+        const original = btn.textContent;
+        btn.textContent = 'Wird gesendet...';
+        btn.disabled = true;
+
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+          });
+          if (res.ok) {
+            // GA4 Lead-Conversion tracken
+            if (typeof gtag !== 'undefined') {
+              gtag('event', 'generate_lead', {
+                event_category: 'Kontaktformular',
+                event_label: form.querySelector('#service')?.value || 'Allgemein'
+              });
+            }
+            form.style.display = 'none';
+            document.getElementById('formSuccess').style.display = 'block';
+          } else {
+            throw new Error('Fehler');
+          }
+        } catch {
+          btn.textContent = '❌ Fehler – bitte erneut versuchen';
+          btn.disabled = false;
+          setTimeout(() => { btn.textContent = original; btn.disabled = false; }, 3000);
+        }
+      });
+    }
+
+    // --- Smooth anchor scrolling ---
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      });
+    });
+  </script>
+</body>
+</html>
