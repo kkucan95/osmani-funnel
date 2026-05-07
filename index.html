@@ -748,12 +748,14 @@
     ============================================================ */
     .featured-project { background: var(--light); }
     .featured-ba {
-      height: 440px;
+      height: 520px;
       border-radius: 16px;
       overflow: hidden;
       margin: 40px 0 28px;
     }
     @media (max-width: 640px) { .featured-ba { height: 240px; } }
+    .featured-ba .ba-before img { object-position: 50% 15%; }
+    .featured-ba .ba-after  img { object-position: 50% 50%; }
     .progress-photos {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
