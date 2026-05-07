@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://garten-landschaftsbau-bietigheim.de/sitemap.xml
