@@ -878,6 +878,57 @@
     .step-desc  { font-size: .88rem; color: var(--mid); line-height: 1.6; }
 
     /* ============================================================
+       TESTIMONIALS
+    ============================================================ */
+    .testimonials { background: var(--white); }
+    .t-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+    @media (max-width: 900px) { .t-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 580px) { .t-grid { grid-template-columns: 1fr; } }
+    .t-card {
+      background: var(--light);
+      border-radius: var(--radius);
+      padding: 28px 28px 22px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .t-card::before {
+      content: '"';
+      position: absolute;
+      top: 14px; left: 24px;
+      font-size: 3.8rem;
+      font-family: Georgia, serif;
+      color: var(--green);
+      opacity: .2;
+      line-height: 1;
+    }
+    .t-quote {
+      font-size: .9rem;
+      color: var(--mid);
+      line-height: 1.75;
+      padding-top: 26px;
+      flex: 1;
+    }
+    .t-stars { color: #f5a623; font-size: .9rem; margin: 14px 0 16px; letter-spacing: 2px; }
+    .t-author { display: flex; align-items: center; gap: 12px; border-top: 1px solid #e9ecef; padding-top: 16px; }
+    .t-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--green);
+      color: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: .8rem;
+      flex-shrink: 0;
+    }
+    .t-name { font-weight: 700; font-size: .88rem; color: var(--dark); }
+    .t-meta { font-size: .76rem; color: var(--mid); margin-top: 2px; }
+
+    /* ============================================================
        CONTACT
     ============================================================ */
     .contact { background: var(--dark-2); }
@@ -1532,6 +1583,95 @@
         <span style="background:#e8f5eb; color:#3a7d44; padding:6px 16px; border-radius:20px; font-size:.88rem; font-weight:500;">Heilbronn</span>
         <span style="background:#e8f5eb; color:#3a7d44; padding:6px 16px; border-radius:20px; font-size:.88rem; font-weight:500;">Stuttgart</span>
         <span style="background:#e8f5eb; color:#3a7d44; padding:6px 16px; border-radius:20px; font-size:.88rem; font-weight:500;">& Umgebung</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TESTIMONIALS
+  ============================================================ -->
+  <section class="testimonials section-pad">
+    <div class="section-inner">
+      <div class="reveal" style="text-align:center">
+        <div class="section-label" style="text-align:center">Kundenstimmen</div>
+        <h2 class="section-title" style="text-align:center">Was unsere Kunden sagen</h2>
+        <p class="section-desc" style="margin:0 auto">Über 500 abgeschlossene Projekte – lesen Sie selbst, was Kunden aus der Region über unsere Arbeit sagen.</p>
+      </div>
+
+      <div class="t-grid">
+
+        <div class="t-card reveal" style="transition-delay:.05s">
+          <p class="t-quote">Osmani hat unsere komplette Einfahrt neu gepflastert. Pünktlich, sauber und das Ergebnis ist einfach top. Unsere Nachbarn fragen uns ständig, wer das gemacht hat!</p>
+          <div class="t-stars">★★★★★</div>
+          <div class="t-author">
+            <div class="t-avatar">MK</div>
+            <div>
+              <div class="t-name">Markus &amp; Sandra K.</div>
+              <div class="t-meta">Ludwigsburg · Einfahrt &amp; Terrasse</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-card reveal" style="transition-delay:.1s">
+          <p class="t-quote">Wir wollten eine Terrasse mit Feinsteinzeug und einen neuen Rollrasen. Das Team hat alles in einer Woche erledigt – professionell, freundlich und zum fairen Preis. Absolute Weiterempfehlung!</p>
+          <div class="t-stars">★★★★★</div>
+          <div class="t-author">
+            <div class="t-avatar">TH</div>
+            <div>
+              <div class="t-name">Thomas &amp; Claudia H.</div>
+              <div class="t-meta">Tamm · Terrasse &amp; Rollrasen</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-card reveal" style="transition-delay:.15s">
+          <p class="t-quote">Neubau-Außenanlagen komplett von Osmani. Von der Pflasterung über den Carport bis zu den Treppenstufen – alles aus einer Hand, termingerecht und ohne Stress. Sehr zufrieden!</p>
+          <div class="t-stars">★★★★★</div>
+          <div class="t-author">
+            <div class="t-avatar">PW</div>
+            <div>
+              <div class="t-name">Peter &amp; Monika W.</div>
+              <div class="t-meta">Sachsenheim · Neubau Außenanlagen</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-card reveal" style="transition-delay:.2s">
+          <p class="t-quote">Unser alter Garten war verwildert – jetzt haben wir eine wunderschöne Gartenanlage mit Weg, Rasenfläche und Bepflanzung. Herr Osmani hat mitgedacht und tolle Vorschläge gemacht.</p>
+          <div class="t-stars">★★★★★</div>
+          <div class="t-author">
+            <div class="t-avatar">AS</div>
+            <div>
+              <div class="t-name">Andrea S.</div>
+              <div class="t-meta">Bietigheim-Bissingen · Gartengestaltung</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-card reveal" style="transition-delay:.25s">
+          <p class="t-quote">Carport mit Pflasterung drumherum – alles sauber abgestimmt und in 4 Tagen fertig. Das Preis-Leistungs-Verhältnis ist wirklich sehr gut. Gerne wieder für die Terrasse nächstes Jahr!</p>
+          <div class="t-stars">★★★★★</div>
+          <div class="t-author">
+            <div class="t-avatar">OR</div>
+            <div>
+              <div class="t-name">Oliver R.</div>
+              <div class="t-meta">Vaihingen a. d. Enz · Carport &amp; Pflasterung</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-card reveal" style="transition-delay:.3s">
+          <p class="t-quote">Schnelle Reaktionszeit, klare Kommunikation und handwerklich einwandfreie Arbeit. Unsere Einfahrt sieht aus wie neu und der Zaun passt perfekt zum Haus. Danke an das ganze Team!</p>
+          <div class="t-stars">★★★★★</div>
+          <div class="t-author">
+            <div class="t-avatar">KB</div>
+            <div>
+              <div class="t-name">Klaus &amp; Brigitte B.</div>
+              <div class="t-meta">Bissingen a. d. Teck · Einfahrt &amp; Zaun</div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
