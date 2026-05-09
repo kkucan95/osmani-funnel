@@ -356,6 +356,27 @@
       border-color: rgba(255,255,255,.75);
     }
 
+    /* Referenz-Link im Hero */
+    .hero-ref-link {
+      display: inline-block;
+      margin-top: 18px;
+      color: rgba(255,255,255,.75);
+      font-size: .9rem;
+      font-weight: 600;
+      letter-spacing: .03em;
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+    .hero-ref-link:hover { color: #7ecf8a; }
+    .hero-ref-arrow {
+      display: inline-block;
+      animation: bounceDown 1.5s ease-in-out infinite;
+    }
+    @keyframes bounceDown {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(4px); }
+    }
+
     /* Stat-Leiste im Hero */
     .hero-stats {
       display: flex;
@@ -1093,6 +1114,7 @@
         <a href="#kontakt" class="btn-primary">✉ Kostenlos anfragen</a>
         <a href="tel:+491791588576" class="btn-phone">📞 Jetzt anrufen</a>
       </div>
+      <a href="#referenz" class="hero-ref-link">📸 Referenzprojekte ansehen <span class="hero-ref-arrow">↓</span></a>
 
       <div class="hero-stats">
         <div class="hero-stat">
@@ -1148,6 +1170,46 @@
         <div class="stat-card reveal" style="transition-delay:.3s">
           <div class="stat-number"><span class="count" data-target="6">0</span><span class="stat-suffix"></span></div>
           <div class="stat-label">Leistungsbereiche</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FEATURED PROJECT: Echtes Vorher/Nachher
+  ============================================================ -->
+  <section class="featured-project section-pad" id="referenz">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-label">Echtes Kundenprojekt</div>
+        <h2 class="section-title">Einfahrt komplett neu gepflastert</h2>
+        <p class="section-desc">Schieben Sie den Regler und sehen Sie selbst – von der aufgerissenen Baustelle zum fertigen Pflasterbelag in nur wenigen Tagen.</p>
+      </div>
+
+      <div class="featured-ba before-after reveal" data-ba>
+        <div class="ba-after"><img src="imgs/p-vorher3.jpg" alt="Fertige gepflasterte Einfahrt" /></div>
+        <div class="ba-before"><img src="imgs/p-nachher.jpg" alt="Einfahrt Vorher – aufgerissen" /></div>
+        <div class="ba-handle"></div>
+        <div class="ba-label ba-label-before">Vorher</div>
+        <div class="ba-label ba-label-after">Nachher</div>
+      </div>
+
+      <div class="progress-photos reveal">
+        <div class="progress-photo">
+          <img src="imgs/p-nachher.jpg" alt="Schritt 1: Aushub" loading="lazy" />
+          <div class="progress-step">① Aushub</div>
+        </div>
+        <div class="progress-photo">
+          <img src="imgs/p-vorher2.jpg" alt="Schritt 2: Erdarbeiten" loading="lazy" />
+          <div class="progress-step">② Erdarbeiten</div>
+        </div>
+        <div class="progress-photo">
+          <img src="imgs/p-vorher1.jpg" alt="Schritt 3: Schotterunterbau" loading="lazy" />
+          <div class="progress-step">③ Schotterunterbau</div>
+        </div>
+        <div class="progress-photo">
+          <img src="imgs/p-vorher3.jpg" alt="Fertige Einfahrt" loading="lazy" />
+          <div class="progress-step" style="background:rgba(58,125,68,.85);">✓ Fertig</div>
         </div>
       </div>
     </div>
@@ -1367,46 +1429,6 @@
           </div>
         </div>
 
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       FEATURED PROJECT: Echtes Vorher/Nachher
-  ============================================================ -->
-  <section class="featured-project section-pad">
-    <div class="section-inner">
-      <div class="reveal">
-        <div class="section-label">Echtes Kundenprojekt</div>
-        <h2 class="section-title">Einfahrt komplett neu gepflastert</h2>
-        <p class="section-desc">Schieben Sie den Regler und sehen Sie selbst – von der aufgerissenen Baustelle zum fertigen Pflasterbelag in nur wenigen Tagen.</p>
-      </div>
-
-      <div class="featured-ba before-after reveal" data-ba>
-        <div class="ba-after"><img src="imgs/p-vorher3.jpg" alt="Fertige gepflasterte Einfahrt" /></div>
-        <div class="ba-before"><img src="imgs/p-nachher.jpg" alt="Einfahrt Vorher – aufgerissen" /></div>
-        <div class="ba-handle"></div>
-        <div class="ba-label ba-label-before">Vorher</div>
-        <div class="ba-label ba-label-after">Nachher</div>
-      </div>
-
-      <div class="progress-photos reveal">
-        <div class="progress-photo">
-          <img src="imgs/p-nachher.jpg" alt="Schritt 1: Aushub" loading="lazy" />
-          <div class="progress-step">① Aushub</div>
-        </div>
-        <div class="progress-photo">
-          <img src="imgs/p-vorher2.jpg" alt="Schritt 2: Erdarbeiten" loading="lazy" />
-          <div class="progress-step">② Erdarbeiten</div>
-        </div>
-        <div class="progress-photo">
-          <img src="imgs/p-vorher1.jpg" alt="Schritt 3: Schotterunterbau" loading="lazy" />
-          <div class="progress-step">③ Schotterunterbau</div>
-        </div>
-        <div class="progress-photo">
-          <img src="imgs/p-vorher3.jpg" alt="Fertige Einfahrt" loading="lazy" />
-          <div class="progress-step" style="background:rgba(58,125,68,.85);">✓ Fertig</div>
-        </div>
       </div>
     </div>
   </section>
