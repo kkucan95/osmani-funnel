@@ -253,11 +253,21 @@
       transform: scale(1.04);
       transition: transform 30s linear;
     }
+    /* Desktop: Landscape 16:9 */
     .s1 { background-image: url('imgs/hero1.jpg'); animation-delay:  0s; }
     .s2 { background-image: url('imgs/hero2.jpg'); animation-delay:  6s; }
     .s3 { background-image: url('imgs/hero3.jpg'); animation-delay: 12s; }
     .s4 { background-image: url('imgs/hero4.jpg'); animation-delay: 18s; }
     .s5 { background-image: url('imgs/hero5.jpg'); animation-delay: 24s; }
+    /* Mobile: Portrait 9:16 – full scene visible without heavy crop */
+    @media (max-width: 768px) {
+      .hero-slide { background-position: center 30%; }
+      .s1 { background-image: url('imgs/hero1-m.jpg'); }
+      .s2 { background-image: url('imgs/hero2-m.jpg'); }
+      .s3 { background-image: url('imgs/hero3-m.jpg'); }
+      .s4 { background-image: url('imgs/hero4-m.jpg'); }
+      .s5 { background-image: url('imgs/hero5-m.jpg'); }
+    }
 
     @keyframes heroFade {
       0%   { opacity: 0;   transform: scale(1.06); }
