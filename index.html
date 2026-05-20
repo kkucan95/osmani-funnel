@@ -1085,6 +1085,7 @@
       margin-top: 12px;
     }
     .form-note a { color: rgba(255,255,255,.6); text-decoration: underline; }
+    .submit-short { display: none; } /* Mobile-Kurzversion standardmäßig versteckt */
 
     .form-success {
       display: none;
@@ -1221,9 +1222,18 @@
     }
     @media (max-width: 768px) {
       nav { display: none; }
-      .hero-content { padding: 110px 5% 80px; }
+      /* Hero: weniger Padding damit Stats im Sichtbereich bleiben */
+      .hero-content { padding: 80px 5% 40px; }
+      .hero-badge { margin-bottom: 16px; }
+      .hero-sub { margin-bottom: 24px; }
+      .hero-btns { margin-bottom: 28px; }
+      .hero-ref-link { margin-top: 6px; }
+      .hero-stats { padding-top: 20px; }
       .hero-stat { padding: 0 14px; }
       .hero-stat-num { font-size: 1.8rem; }
+      .hero-stat-label { font-size: .7rem; white-space: nowrap; }
+      /* Lange E-Mail-Adresse umbricht statt zu überlaufen */
+      .contact-item-text a { word-break: break-all; }
       .why-features { grid-template-columns: 1fr; }
       .contact-grid { grid-template-columns: 1fr; }
       .services-grid { grid-template-columns: 1fr; }
@@ -1234,6 +1244,10 @@
       .trust-bar { gap: 24px; }
       .footer-bottom { flex-direction: column; text-align: center; }
     }
+    /* Sehr kleine Bildschirme (iPhone SE 667px Höhe): Stats ausblenden – stehen unten nochmal */
+    @media (max-width: 768px) and (max-height: 700px) {
+      .hero-stats { display: none; }
+    }
     @media (max-width: 480px) {
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .hero-btns { flex-direction: column; }
@@ -1241,6 +1255,9 @@
       .hero-stats { gap: 0; }
       .hero-stat { padding: 0 10px; }
       .hero-stat-num { font-size: 1.5rem; }
+      /* Form-Button: kurze Version auf kleinen Screens */
+      .submit-full { display: none; }
+      .submit-short { display: inline; }
     }
   </style>
 </head>
@@ -1859,7 +1876,8 @@
             </div>
 
             <button type="submit" class="form-submit">
-              ✉ Anfrage absenden – kostenlos &amp; unverbindlich
+              <span class="submit-full">✉ Anfrage absenden – kostenlos &amp; unverbindlich</span>
+              <span class="submit-short">✉ Kostenlos anfragen</span>
             </button>
             <p class="form-note">
               Mit dem Absenden stimmen Sie unserer <a href="datenschutz.html">Datenschutzerklärung</a> zu. Keine Weitergabe an Dritte.
