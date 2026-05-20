@@ -1250,9 +1250,9 @@
        HEADER
   ============================================================ -->
   <header id="header">
-    <div class="logo-wrap">
+    <a href="#home" class="logo-wrap" style="text-decoration:none;">
       <img src="imgs/logo-white.png" alt="Garten & Landschaftsbau Osmani GmbH" class="logo-img" style="height:52px;" />
-    </div>
+    </a>
     <nav>
       <a href="#leistungen">Leistungen</a>
       <a href="#projekte">Projekte</a>
@@ -1477,7 +1477,7 @@
   <!-- ============================================================
        TESTIMONIALS
   ============================================================ -->
-  <section class="testimonials section-pad">
+  <section class="testimonials section-pad" id="testimonials">
     <div class="section-inner">
       <div class="reveal" style="text-align:center">
         <div class="section-label" style="text-align:center">Kundenstimmen</div>
@@ -2051,6 +2051,28 @@
       a.addEventListener('click', e => {
         const target = document.querySelector(a.getAttribute('href'));
         if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      });
+    });
+
+    // --- Stat Cards: sehen interaktiv aus → sind es jetzt auch ---
+    const statTargets = ['#projekte', '#projekte', '#testimonials', '#leistungen'];
+    document.querySelectorAll('.stat-card').forEach((card, i) => {
+      card.style.cursor = 'pointer';
+      card.setAttribute('title', 'Mehr erfahren');
+      card.addEventListener('click', () => {
+        const sel = statTargets[i] || '#projekte';
+        const el = document.querySelector(sel);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // --- Service Cards: ganzer Card-Klick → Kontakt ---
+    document.querySelectorAll('.service-card').forEach(card => {
+      card.addEventListener('click', e => {
+        // Nur auslösen wenn nicht der interne Link selbst geklickt wurde
+        if (!e.target.closest('a')) {
+          document.getElementById('kontakt').scrollIntoView({ behavior: 'smooth' });
+        }
       });
     });
   </script>
