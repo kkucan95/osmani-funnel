@@ -60,6 +60,7 @@
       {"@type": "City", "name": "Tamm"},
       {"@type": "City", "name": "Sachsenheim"},
       {"@type": "City", "name": "Vaihingen an der Enz"},
+      {"@type": "City", "name": "Löchgau"},
       {"@type": "City", "name": "Besigheim"},
       {"@type": "City", "name": "Marbach am Neckar"},
       {"@type": "City", "name": "Stuttgart"}
@@ -84,12 +85,9 @@
         {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Erdarbeiten & Glasfaser"}}
       ]
     },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "47",
-      "bestRating": "5"
-    }
+    "sameAs": [
+      "https://g.page/r/CcnpSWYX1zzrEBM/review"
+    ]
   }
   </script>
 
@@ -97,18 +95,65 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <!-- ================================================================
-       GOOGLE ANALYTICS 4
-       TODO: G-XXXXXXXXXX ersetzen → https://analytics.google.com
-       Measurement ID findest du unter: Admin → Datenströme → Web-Stream
-  ================================================================ -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
+  <!-- FAQPage Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was kostet eine Einfahrt pflastern in Bietigheim-Bissingen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Kosten für eine Einfahrt pflastern in Bietigheim-Bissingen hängen von Fläche, Material und Untergrund ab. Einfache Betonsteinpflasterungen starten ab ca. 60–80 €/m², hochwertige Naturstein- oder Betonplatten liegen höher. Für ein kostenloses, verbindliches Angebot kommen wir gerne zur kostenlosen Begehung."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie lange dauert eine Pflasterung oder Terrassensanierung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Je nach Größe und Aufwand dauern unsere Projekte in der Regel 3 bis 10 Arbeitstage. Eine Einfahrt bis 60 m² ist häufig in 4–5 Tagen fertig, eine komplette Neubau-Außenanlage kann bis zu 2 Wochen dauern."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Fahren Sie auch nach Tamm, Ludwigsburg, Löchgau oder Sachsenheim?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja – wir sind im gesamten Landkreis Ludwigsburg tätig: Bietigheim-Bissingen, Löchgau, Tamm, Sachsenheim, Ludwigsburg, Besigheim, Marbach am Neckar, Vaihingen an der Enz und der Großraum Stuttgart."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ist der Kostenvoranschlag wirklich kostenlos?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, absolut. Der Kostenvoranschlag ist bei uns immer kostenlos und unverbindlich. Wir kommen zu Ihnen, besichtigen das Projekt vor Ort und erstellen ein detailliertes schriftliches Angebot – ohne versteckte Kosten."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Können Sie auch Carports, Zäune und Gartengestaltung übernehmen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja – neben Pflaster- und Terrassenarbeiten übernehmen wir Carports & Überdachungen, Zäune & Sichtschutz sowie komplette Gartengestaltung. Alles aus einer Hand, damit Sie nur einen Ansprechpartner haben."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Materialien verwenden Sie für Pflasterarbeiten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Wir arbeiten mit hochwertigen Markensteinen von Herstellern wie Kann, Berding oder Diephaus. Für Terrassen setzen wir auf großformatige Feinsteinzeug-, Naturstein- oder Betonplatten – je nach Wunsch und Budget."
+        }
+      }
+    ]
+  }
   </script>
+
+  <!-- Google Analytics 4 – TODO: echte Measurement-ID eintragen (analytics.google.com → Admin → Datenströme) -->
 
   <style>
     /* ============================================================
@@ -1298,14 +1343,13 @@
       </div>
 
       <h1 class="hero-title">
-        Ihr Außenbereich –<br>
-        <span class="highlight">in besten Händen.</span>
+        Garten- &amp; Landschaftsbau<br>
+        <span class="highlight">Bietigheim-Bissingen.</span>
       </h1>
 
       <p class="hero-sub">
-        Über 15 Jahre Erfahrung im Garten- und Landschaftsbau.
-        Einfahrten, Terrassen, Carports, Zäune – alles aus einer Hand.
-        Kostenloser Kostenvoranschlag.
+        Ihr erfahrener Galabau-Partner in Bietigheim-Bissingen &amp; Umgebung seit über 15 Jahren.
+        Einfahrten pflastern, Terrassen, Carports &amp; Zäune – alles aus einer Hand. Kostenloser Kostenvoranschlag.
       </p>
 
       <div class="hero-btns">
@@ -1385,8 +1429,8 @@
       </div>
 
       <div class="featured-ba before-after reveal" data-ba>
-        <div class="ba-after"><img src="imgs/p-vorher3.jpg" alt="Fertige gepflasterte Einfahrt" /></div>
-        <div class="ba-before"><img src="imgs/p-nachher.jpg" alt="Einfahrt Vorher – aufgerissen" /></div>
+        <div class="ba-after"><img src="imgs/p-vorher3.jpg" alt="Einfahrt pflastern Bietigheim-Bissingen – fertig gepflastert" /></div>
+        <div class="ba-before"><img src="imgs/p-nachher.jpg" alt="Einfahrt Bietigheim-Bissingen vor der Pflasterung" /></div>
         <div class="ba-handle"></div>
         <div class="ba-label ba-label-before">Vorher</div>
         <div class="ba-label ba-label-after">Nachher</div>
@@ -1394,19 +1438,19 @@
 
       <div class="progress-photos reveal">
         <div class="progress-photo">
-          <img src="imgs/p-nachher.jpg" alt="Schritt 1: Aushub" loading="lazy" />
+          <img src="imgs/p-nachher.jpg" alt="Pflasterarbeiten Bietigheim – Aushub Einfahrt" loading="lazy" />
           <div class="progress-step">① Aushub</div>
         </div>
         <div class="progress-photo">
-          <img src="imgs/p-vorher2.jpg" alt="Schritt 2: Erdarbeiten" loading="lazy" />
+          <img src="imgs/p-vorher2.jpg" alt="Pflasterarbeiten Bietigheim – Erdarbeiten" loading="lazy" />
           <div class="progress-step">② Erdarbeiten</div>
         </div>
         <div class="progress-photo">
-          <img src="imgs/p-vorher1.jpg" alt="Schritt 3: Schotterunterbau" loading="lazy" />
+          <img src="imgs/p-vorher1.jpg" alt="Pflasterarbeiten Bietigheim – Schotterunterbau" loading="lazy" />
           <div class="progress-step">③ Schotterunterbau</div>
         </div>
         <div class="progress-photo">
-          <img src="imgs/p-vorher3.jpg" alt="Fertige Einfahrt" loading="lazy" />
+          <img src="imgs/p-vorher3.jpg" alt="Fertige Einfahrt Bietigheim-Bissingen" loading="lazy" />
           <div class="progress-step" style="background:rgba(58,125,68,.85);">✓ Fertig</div>
         </div>
       </div>
@@ -1429,11 +1473,11 @@
         <!-- Projekt 1: Terrasse Feinsteinzeug -->
         <div class="project-card reveal" style="transition-delay:.05s">
           <div class="gallery-slide">
-            <img src="imgs/t1.jpg" alt="Terrasse Feinsteinzeug" />
-            <img src="imgs/t2.jpg" alt="Terrasse mit Rasenfläche" loading="lazy" />
-            <img src="imgs/t3.jpg" alt="Terrassenansicht" loading="lazy" />
-            <img src="imgs/t4.jpg" alt="Terrasse und Garten" loading="lazy" />
-            <img src="imgs/t5.jpg" alt="Terrasse Gesamtansicht" loading="lazy" />
+            <img src="imgs/t1.jpg" alt="Terrassenbau Bietigheim-Bissingen – Feinsteinzeugplatten" />
+            <img src="imgs/t2.jpg" alt="Terrassengestaltung Bietigheim – Rasenfläche und Terrasse" loading="lazy" />
+            <img src="imgs/t3.jpg" alt="Terrasse Bietigheim-Bissingen – Seitenansicht" loading="lazy" />
+            <img src="imgs/t4.jpg" alt="Gartengestaltung und Terrassenbau Bietigheim" loading="lazy" />
+            <img src="imgs/t5.jpg" alt="Terrassenbau Bietigheim-Bissingen – Gesamtansicht" loading="lazy" />
             <div class="project-tag">Terrasse</div>
             <div class="gallery-count">📷 5 Fotos</div>
           </div>
@@ -1450,8 +1494,8 @@
         <!-- Projekt 2: Einfahrt-Sanierung -->
         <div class="project-card reveal" style="transition-delay:.1s">
           <div class="before-after" data-ba>
-            <div class="ba-after"><img src="imgs/p2-nachher-v2.jpg" alt="Fertige gepflasterte Einfahrt mit Garage" /></div>
-            <div class="ba-before"><img src="imgs/p2-vorher.jpg" alt="Alte Einfahrt aufgerissen" /></div>
+            <div class="ba-after"><img src="imgs/p2-nachher-v2.jpg" alt="Einfahrt und Terrasse Tamm – fertig gepflastert mit Garage" /></div>
+            <div class="ba-before"><img src="imgs/p2-vorher.jpg" alt="Einfahrt Tamm vor der Pflasterung" /></div>
             <div class="ba-handle"></div>
             <div class="ba-label ba-label-before">Vorher</div>
             <div class="ba-label ba-label-after">Nachher</div>
@@ -1470,8 +1514,8 @@
         <!-- Projekt 3: Neubau Außenanlagen -->
         <div class="project-card reveal" style="transition-delay:.15s">
           <div class="before-after" data-ba>
-            <div class="ba-after"><img src="imgs/p3-nachher-v2.jpg" alt="Fertige Neubau-Außenanlage mit Treppenstufen" /></div>
-            <div class="ba-before"><img src="imgs/p3-vorher.jpg" alt="Neubau Rohbau Außenbereich" /></div>
+            <div class="ba-after"><img src="imgs/p3-nachher-v2.jpg" alt="Neubau Außenanlagen Sachsenheim – Pflaster und Treppenstufen fertig" /></div>
+            <div class="ba-before"><img src="imgs/p3-vorher.jpg" alt="Neubau Außenbereich Sachsenheim vor Galabau-Arbeiten" /></div>
             <div class="ba-handle"></div>
             <div class="ba-label ba-label-before">Rohbau</div>
             <div class="ba-label ba-label-after">Fertig</div>
@@ -1571,7 +1615,7 @@
             <div class="t-avatar">KB</div>
             <div>
               <div class="t-name">Klaus &amp; Brigitte B.</div>
-              <div class="t-meta">Bissingen a. d. Teck · Einfahrt &amp; Zaun</div>
+              <div class="t-meta">Besigheim · Einfahrt &amp; Zaun</div>
             </div>
           </div>
         </div>
@@ -1594,7 +1638,7 @@
       <div class="services-grid">
         <div class="service-card reveal" style="transition-delay:.05s">
           <div class="service-img-wrap">
-            <img src="imgs/einfahrt.jpg" alt="Einfahrten & Pflasterung" loading="lazy" />
+            <img src="imgs/einfahrt.jpg" alt="Einfahrt pflastern Bietigheim-Bissingen – Galabau Osmani" loading="lazy" />
           </div>
           <div class="service-body">
             <h3>Einfahrten &amp; Pflasterung</h3>
@@ -1605,7 +1649,7 @@
 
         <div class="service-card reveal" style="transition-delay:.1s">
           <div class="service-img-wrap">
-            <img src="imgs/terrasse.jpg" alt="Terrassen" loading="lazy" />
+            <img src="imgs/terrasse.jpg" alt="Terrassenbau Bietigheim-Bissingen – Pflasterung und Platten" loading="lazy" />
           </div>
           <div class="service-body">
             <h3>Terrassen &amp; Wege</h3>
@@ -1616,7 +1660,7 @@
 
         <div class="service-card reveal" style="transition-delay:.15s">
           <div class="service-img-wrap">
-            <img src="imgs/carport-v2.jpg" alt="Carports" loading="lazy" />
+            <img src="imgs/carport-v2.jpg" alt="Carport bauen Bietigheim-Bissingen – Überdachung Galabau" loading="lazy" />
           </div>
           <div class="service-body">
             <h3>Carports &amp; Überdachungen</h3>
@@ -1756,6 +1800,7 @@
       </p>
       <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center;">
         <span style="background:#e8f5eb; color:#3a7d44; padding:6px 16px; border-radius:20px; font-size:.88rem; font-weight:500;">Bietigheim-Bissingen</span>
+        <span style="background:#e8f5eb; color:#3a7d44; padding:6px 16px; border-radius:20px; font-size:.88rem; font-weight:500;">Löchgau</span>
         <span style="background:#e8f5eb; color:#3a7d44; padding:6px 16px; border-radius:20px; font-size:.88rem; font-weight:500;">Ludwigsburg</span>
         <span style="background:#e8f5eb; color:#3a7d44; padding:6px 16px; border-radius:20px; font-size:.88rem; font-weight:500;">Tamm</span>
         <span style="background:#e8f5eb; color:#3a7d44; padding:6px 16px; border-radius:20px; font-size:.88rem; font-weight:500;">Sachsenheim</span>
@@ -1765,6 +1810,83 @@
         <span style="background:#e8f5eb; color:#3a7d44; padding:6px 16px; border-radius:20px; font-size:.88rem; font-weight:500;">Heilbronn</span>
         <span style="background:#e8f5eb; color:#3a7d44; padding:6px 16px; border-radius:20px; font-size:.88rem; font-weight:500;">Stuttgart</span>
         <span style="background:#e8f5eb; color:#3a7d44; padding:6px 16px; border-radius:20px; font-size:.88rem; font-weight:500;">& Umgebung</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FAQ
+  ============================================================ -->
+  <section style="background:#fff; padding:72px 5%;" id="faq">
+    <div style="max-width:820px; margin:0 auto;">
+      <div style="text-align:center; margin-bottom:48px;">
+        <div class="section-label" style="text-align:center;">Häufige Fragen</div>
+        <h2 class="section-title" style="text-align:center;">Antworten auf Ihre Fragen</h2>
+        <p class="section-desc" style="margin:0 auto;">Alles Wichtige rund um Planung, Kosten und Ablauf – kompakt beantwortet.</p>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:16px;">
+
+        <details style="border:1px solid #e5e7eb; border-radius:12px; padding:20px 24px; cursor:pointer;">
+          <summary style="font-weight:700; font-size:1rem; color:#1a1f24; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:12px;">
+            Was kostet eine Einfahrt pflastern in Bietigheim-Bissingen?
+            <span style="color:#3a7d44; font-size:1.3rem; flex-shrink:0;">+</span>
+          </summary>
+          <p style="margin-top:14px; color:#4a5568; font-size:.93rem; line-height:1.7;">
+            Die Kosten hängen von Fläche, Material und Untergrund ab. Einfache Betonsteinpflasterungen starten ab ca. 60–80 €/m², hochwertige Naturstein- oder Betonplatten liegen entsprechend höher. Für ein genaues Angebot kommen wir gerne zur <strong>kostenlosen Begehung</strong> zu Ihnen.
+          </p>
+        </details>
+
+        <details style="border:1px solid #e5e7eb; border-radius:12px; padding:20px 24px; cursor:pointer;">
+          <summary style="font-weight:700; font-size:1rem; color:#1a1f24; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:12px;">
+            Wie lange dauert eine Pflasterung oder Terrassensanierung?
+            <span style="color:#3a7d44; font-size:1.3rem; flex-shrink:0;">+</span>
+          </summary>
+          <p style="margin-top:14px; color:#4a5568; font-size:.93rem; line-height:1.7;">
+            Je nach Größe und Aufwand dauern unsere Projekte in der Regel <strong>3 bis 10 Arbeitstage</strong>. Eine Einfahrt bis 60 m² ist häufig in 4–5 Tagen fertig, eine komplette Neubau-Außenanlage kann bis zu 2 Wochen dauern.
+          </p>
+        </details>
+
+        <details style="border:1px solid #e5e7eb; border-radius:12px; padding:20px 24px; cursor:pointer;">
+          <summary style="font-weight:700; font-size:1rem; color:#1a1f24; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:12px;">
+            Fahren Sie auch nach Tamm, Löchgau, Ludwigsburg oder Sachsenheim?
+            <span style="color:#3a7d44; font-size:1.3rem; flex-shrink:0;">+</span>
+          </summary>
+          <p style="margin-top:14px; color:#4a5568; font-size:.93rem; line-height:1.7;">
+            Ja – wir sind im <strong>gesamten Landkreis Ludwigsburg</strong> tätig: Bietigheim-Bissingen, Löchgau, Tamm, Sachsenheim, Ludwigsburg, Besigheim, Marbach am Neckar, Vaihingen an der Enz und der Großraum Stuttgart.
+          </p>
+        </details>
+
+        <details style="border:1px solid #e5e7eb; border-radius:12px; padding:20px 24px; cursor:pointer;">
+          <summary style="font-weight:700; font-size:1rem; color:#1a1f24; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:12px;">
+            Ist der Kostenvoranschlag wirklich kostenlos?
+            <span style="color:#3a7d44; font-size:1.3rem; flex-shrink:0;">+</span>
+          </summary>
+          <p style="margin-top:14px; color:#4a5568; font-size:.93rem; line-height:1.7;">
+            Ja, absolut. Wir kommen zu Ihnen, besichtigen das Projekt vor Ort und erstellen ein <strong>detailliertes schriftliches Angebot</strong> – immer kostenlos und unverbindlich, ohne versteckte Kosten.
+          </p>
+        </details>
+
+        <details style="border:1px solid #e5e7eb; border-radius:12px; padding:20px 24px; cursor:pointer;">
+          <summary style="font-weight:700; font-size:1rem; color:#1a1f24; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:12px;">
+            Können Sie auch Carports, Zäune und Gartengestaltung übernehmen?
+            <span style="color:#3a7d44; font-size:1.3rem; flex-shrink:0;">+</span>
+          </summary>
+          <p style="margin-top:14px; color:#4a5568; font-size:.93rem; line-height:1.7;">
+            Ja – neben Pflaster- und Terrassenarbeiten übernehmen wir Carports &amp; Überdachungen, Zäune &amp; Sichtschutz sowie komplette Gartengestaltung. <strong>Alles aus einer Hand</strong>, damit Sie nur einen Ansprechpartner haben.
+          </p>
+        </details>
+
+        <details style="border:1px solid #e5e7eb; border-radius:12px; padding:20px 24px; cursor:pointer;">
+          <summary style="font-weight:700; font-size:1rem; color:#1a1f24; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:12px;">
+            Welche Materialien verwenden Sie für Pflasterarbeiten?
+            <span style="color:#3a7d44; font-size:1.3rem; flex-shrink:0;">+</span>
+          </summary>
+          <p style="margin-top:14px; color:#4a5568; font-size:.93rem; line-height:1.7;">
+            Wir arbeiten mit hochwertigen Markensteinen von Herstellern wie Kann, Berding oder Diephaus. Für Terrassen setzen wir auf <strong>großformatige Feinsteinzeug-, Naturstein- oder Betonplatten</strong> – je nach Wunsch und Budget.
+          </p>
+        </details>
+
       </div>
     </div>
   </section>
@@ -1908,6 +2030,12 @@
           <p style="margin-top:10px;font-size:.8rem;color:rgba(255,255,255,.4);">
             <a href="mailto:gartenundlandschaftsbauosmani@gmail.com" style="color:rgba(255,255,255,.45);text-decoration:none;">✉ gartenundlandschaftsbauosmani@gmail.com</a>
           </p>
+          <p style="margin-top:6px;font-size:.78rem;color:rgba(255,255,255,.35);" itemscope itemtype="https://schema.org/PostalAddress">
+            <span itemprop="streetAddress">Löchgau</span> ·
+            <span itemprop="postalCode">74369</span>
+            <span itemprop="addressLocality">Löchgau</span>,
+            <span itemprop="addressRegion">Baden-Württemberg</span>
+          </p>
         </div>
         <div class="footer-col">
           <h4>Leistungen</h4>
@@ -1933,6 +2061,7 @@
           <h4>Servicegebiet</h4>
           <ul>
             <li><a href="#">Bietigheim-Bissingen</a></li>
+            <li><a href="#">Löchgau</a></li>
             <li><a href="#">Ludwigsburg</a></li>
             <li><a href="#">Tamm</a></li>
             <li><a href="#">Sachsenheim</a></li>
