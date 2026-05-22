@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Kostenlose Beratung – Garten & Landschaftsbau Osmani</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green: #3a7d44;
+      --green-dark: #2c6035;
+      --accent: #f0a500;
+      --dark: #1a1f24;
+      --gray: #f5f7f5;
+      --text: #2d3436;
+      --border: #d4dcd5;
+      --error: #c0392b;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: linear-gradient(135deg, #e8f0e9 0%, #f5f7f5 100%);
+      min-height: 100vh;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    input, textarea, select { -webkit-user-select: text; user-select: text; }
+
+    .header {
+      background: var(--dark);
+      color: #fff;
+      padding: 1.25rem 1.5rem;
+      text-align: center;
+    }
+    .header .logo { font-size: 1.5rem; font-weight: 800; }
+    .header .logo span { color: var(--accent); }
+    .header .sub { font-size: 0.95rem; opacity: 0.85; margin-top: 0.25rem; }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 1.5rem 1.5rem 3rem;
+    }
+
+    .intro {
+      background: #fff;
+      border-radius: 16px;
+      padding: 1.75rem;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      text-align: center;
+    }
+    .intro h1 {
+      font-size: 1.75rem;
+      color: var(--green-dark);
+      margin-bottom: 0.6rem;
+      line-height: 1.25;
+    }
+    .intro p { font-size: 1.05rem; color: #555; }
+    .badges {
+      display: flex;
+      justify-content: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+    .badge {
+      background: var(--gray);
+      color: var(--green-dark);
+      padding: 0.4rem 0.85rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .form-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 1.75rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+
+    .field { margin-bottom: 1.25rem; }
+    .field label {
+      display: block;
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+    .field label .req { color: var(--error); }
+    .field input[type="text"],
+    .field input[type="tel"],
+    .field input[type="email"],
+    .field textarea,
+    .field select {
+      width: 100%;
+      padding: 0.95rem 1rem;
+      font-size: 1.05rem;
+      font-family: inherit;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+      color: var(--text);
+      transition: border-color 0.15s;
+      min-height: 56px;
+    }
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus {
+      outline: none;
+      border-color: var(--green);
+    }
+    .field textarea { resize: none; min-height: 110px; }
+
+    .chip-group {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.6rem;
+    }
+    .chip {
+      position: relative;
+      display: block;
+    }
+    .chip input { position: absolute; opacity: 0; pointer-events: none; }
+    .chip span {
+      display: block;
+      padding: 0.95rem 0.85rem;
+      text-align: center;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      background: #fff;
+      cursor: pointer;
+      transition: all 0.15s;
+      min-height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1.3;
+    }
+    .chip input:checked + span {
+      background: var(--green);
+      color: #fff;
+      border-color: var(--green);
+    }
+
+    .checkbox-field {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 1rem;
+      background: var(--gray);
+      border-radius: 10px;
+      margin-bottom: 1.25rem;
+      cursor: pointer;
+    }
+    .checkbox-field input {
+      width: 26px;
+      height: 26px;
+      accent-color: var(--green);
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    .checkbox-field label {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: #444;
+      cursor: pointer;
+    }
+    .checkbox-field a { color: var(--green-dark); text-decoration: underline; }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 1.25rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.05s;
+      font-family: inherit;
+      min-height: 64px;
+    }
+    .btn-submit:hover { background: #d4920a; }
+    .btn-submit:active { transform: scale(0.99); }
+    .btn-submit:disabled { background: #aaa; cursor: not-allowed; }
+
+    .error-msg {
+      color: var(--error);
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      display: none;
+    }
+    .field.has-error input,
+    .field.has-error select,
+    .field.has-error textarea { border-color: var(--error); }
+    .field.has-error .error-msg { display: block; }
+
+    .success {
+      display: none;
+      text-align: center;
+      padding: 3rem 1.5rem;
+    }
+    .success.show { display: block; }
+    .success .check {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: var(--green);
+      color: #fff;
+      font-size: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-weight: 700;
+    }
+    .success h2 {
+      font-size: 1.75rem;
+      color: var(--green-dark);
+      margin-bottom: 0.75rem;
+    }
+    .success p {
+      font-size: 1.1rem;
+      color: #555;
+      max-width: 480px;
+      margin: 0 auto 2rem;
+    }
+    .btn-reset {
+      background: var(--green);
+      color: #fff;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+      border-radius: 10px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #888;
+      margin-top: 1.5rem;
+    }
+
+    @media (min-width: 600px) {
+      .chip-group { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">Galabau <span>Osmani</span></div>
+  <div class="sub">Garten- & Landschaftsbau · Bietigheim-Bissingen</div>
+</div>
+
+<div class="container">
+
+  <div id="formView">
+    <div class="intro">
+      <h1>Kostenlose Vor-Ort-Beratung sichern</h1>
+      <p>Tragen Sie Ihre Daten ein – wir melden uns innerhalb 24 Stunden und vereinbaren Ihren Wunschtermin.</p>
+      <div class="badges">
+        <div class="badge">✓ Kostenlos</div>
+        <div class="badge">✓ Unverbindlich</div>
+        <div class="badge">✓ Vor-Ort-Termin</div>
+      </div>
+    </div>
+
+    <form id="leadForm" class="form-card" novalidate>
+      <!-- Web3Forms Access Key – HIER EINTRAGEN -->
+      <input type="hidden" name="access_key" value="803d89fe-8268-458a-8968-68c666c901f5">
+      <input type="hidden" name="subject" value="🎯 Neuer Messe-Lead – Osmani Galabau">
+      <input type="hidden" name="from_name" value="Messe-Stand Osmani">
+      <input type="checkbox" name="botcheck" style="display:none">
+
+      <div class="field">
+        <label for="name">Name <span class="req">*</span></label>
+        <input type="text" id="name" name="name" required autocomplete="name" placeholder="Vor- und Nachname">
+        <div class="error-msg">Bitte Namen eingeben.</div>
+      </div>
+
+      <div class="field">
+        <label for="phone">Telefon <span class="req">*</span></label>
+        <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="z. B. 0179 1234567" inputmode="tel">
+        <div class="error-msg">Bitte Telefonnummer eingeben.</div>
+      </div>
+
+      <div class="field">
+        <label for="email">E-Mail</label>
+        <input type="email" id="email" name="email" autocomplete="email" placeholder="optional" inputmode="email">
+      </div>
+
+      <div class="field">
+        <label for="plz">PLZ / Ort <span class="req">*</span></label>
+        <input type="text" id="plz" name="plz" required placeholder="z. B. 74321 Bietigheim" inputmode="text">
+        <div class="error-msg">Bitte PLZ oder Ort eingeben.</div>
+      </div>
+
+      <div class="field">
+        <label>Worum geht es? <span class="req">*</span></label>
+        <div class="chip-group" id="projectChips">
+          <label class="chip"><input type="radio" name="project" value="Pflasterarbeiten" required><span>Pflaster­arbeiten</span></label>
+          <label class="chip"><input type="radio" name="project" value="Einfahrt"><span>Einfahrt</span></label>
+          <label class="chip"><input type="radio" name="project" value="Terrasse"><span>Terrasse</span></label>
+          <label class="chip"><input type="radio" name="project" value="Gartengestaltung"><span>Garten­gestaltung</span></label>
+          <label class="chip"><input type="radio" name="project" value="Mauerbau"><span>Mauerbau</span></label>
+          <label class="chip"><input type="radio" name="project" value="Sonstiges"><span>Sonstiges</span></label>
+        </div>
+        <div class="error-msg">Bitte Bereich auswählen.</div>
+      </div>
+
+      <div class="field">
+        <label for="when">Wunschtermin Beratung</label>
+        <select id="when" name="when">
+          <option value="So schnell wie möglich">So schnell wie möglich</option>
+          <option value="Innerhalb 1 Woche">Innerhalb 1 Woche</option>
+          <option value="Innerhalb 2 Wochen">Innerhalb 2 Wochen</option>
+          <option value="Diesen Monat">Diesen Monat</option>
+          <option value="Nächste Saison">Nächste Saison</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="notes">Kurze Beschreibung (optional)</label>
+        <textarea id="notes" name="notes" placeholder="z. B. Größe der Fläche, besondere Wünsche…"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="salesperson">Erfasst von (Vertriebler)</label>
+        <input type="text" id="salesperson" name="salesperson" placeholder="Name des Vertrieblers">
+      </div>
+
+      <label class="checkbox-field">
+        <input type="checkbox" id="dsgvo" required>
+        <span>Ich bin damit einverstanden, dass meine Daten zur Kontaktaufnahme verwendet werden. Die <a href="/datenschutz" target="_blank">Datenschutzerklärung</a> habe ich gelesen.</span>
+      </label>
+      <div class="error-msg" id="dsgvoError" style="margin-top:-0.75rem;margin-bottom:1rem;">Bitte Einverständnis bestätigen.</div>
+
+      <button type="submit" class="btn-submit" id="submitBtn">Beratungstermin anfragen →</button>
+
+      <p class="footer-note">Antwort innerhalb 24 Stunden · 100% kostenlos & unverbindlich</p>
+    </form>
+  </div>
+
+  <div id="successView" class="success">
+    <div class="check">✓</div>
+    <h2>Vielen Dank!</h2>
+    <p>Ihre Anfrage ist bei uns eingegangen. Wir melden uns innerhalb von 24 Stunden bei Ihnen, um den kostenlosen Beratungstermin zu vereinbaren.</p>
+    <button type="button" class="btn-reset" id="resetBtn">Nächste Anfrage erfassen</button>
+  </div>
+
+</div>
+
+<script>
+(function() {
+  const form = document.getElementById('leadForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const formView = document.getElementById('formView');
+  const successView = document.getElementById('successView');
+  const resetBtn = document.getElementById('resetBtn');
+  const dsgvoError = document.getElementById('dsgvoError');
+
+  function clearErrors() {
+    form.querySelectorAll('.field').forEach(f => f.classList.remove('has-error'));
+    dsgvoError.style.display = 'none';
+  }
+
+  function validate() {
+    clearErrors();
+    let ok = true;
+    const required = ['name', 'phone', 'plz'];
+    required.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el.value.trim()) {
+        el.closest('.field').classList.add('has-error');
+        ok = false;
+      }
+    });
+    if (!form.querySelector('input[name="project"]:checked')) {
+      document.getElementById('projectChips').closest('.field').classList.add('has-error');
+      ok = false;
+    }
+    if (!document.getElementById('dsgvo').checked) {
+      dsgvoError.style.display = 'block';
+      ok = false;
+    }
+    return ok;
+  }
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    if (!validate()) {
+      const firstError = form.querySelector('.has-error');
+      if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Wird gesendet…';
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+    data.zeitstempel = new Date().toLocaleString('de-DE');
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const json = await res.json();
+      if (json.success) {
+        formView.style.display = 'none';
+        successView.classList.add('show');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        throw new Error(json.message || 'Fehler beim Senden');
+      }
+    } catch (err) {
+      alert('Senden fehlgeschlagen: ' + err.message + '\n\nBitte erneut versuchen oder Daten notieren.');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Beratungstermin anfragen →';
+    }
+  });
+
+  resetBtn.addEventListener('click', function() {
+    form.reset();
+    clearErrors();
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Beratungstermin anfragen →';
+    successView.classList.remove('show');
+    formView.style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Prevent iOS double-tap zoom
+  let lastTouch = 0;
+  document.addEventListener('touchend', function(e) {
+    const now = Date.now();
+    if (now - lastTouch <= 350) e.preventDefault();
+    lastTouch = now;
+  }, { passive: false });
+})();
+</script>
+
+</body>
+</html>
