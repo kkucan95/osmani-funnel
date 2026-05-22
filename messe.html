@@ -24,19 +24,24 @@
     body {
       font-family: 'Inter', sans-serif;
       color: var(--text);
-      background: linear-gradient(135deg, #e8f0e9 0%, #f5f7f5 100%);
       min-height: 100vh;
       -webkit-tap-highlight-color: transparent;
       -webkit-user-select: none;
       user-select: none;
+      background:
+        linear-gradient(135deg, rgba(26,31,36,0.78) 0%, rgba(44,96,53,0.72) 100%),
+        url('/imgs/hero1.jpg') center/cover fixed no-repeat;
     }
     input, textarea, select { -webkit-user-select: text; user-select: text; }
 
     .header {
-      background: var(--dark);
+      background: rgba(26,31,36,0.55);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
       color: #fff;
-      padding: 1.25rem 1.5rem;
+      padding: 1.5rem 1.5rem;
       text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
     }
     .header .logo { font-size: 1.25rem; font-weight: 800; line-height: 1.25; }
     .header .logo span { color: var(--accent); }
@@ -53,7 +58,7 @@
       border-radius: 16px;
       padding: 1.75rem;
       margin-bottom: 1.25rem;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.25);
       text-align: center;
     }
     .intro h1 {
@@ -83,7 +88,7 @@
       background: #fff;
       border-radius: 16px;
       padding: 1.75rem;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.25);
     }
 
     .field { margin-bottom: 1.25rem; }
@@ -210,6 +215,9 @@
       display: none;
       text-align: center;
       padding: 3rem 1.5rem;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.25);
     }
     .success.show { display: block; }
     .success .check {
@@ -250,8 +258,8 @@
 
     .footer-note {
       text-align: center;
-      font-size: 0.8rem;
-      color: #888;
+      font-size: 0.85rem;
+      color: #666;
       margin-top: 1.5rem;
     }
 
