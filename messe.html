@@ -38,7 +38,7 @@
       padding: 1.25rem 1.5rem;
       text-align: center;
     }
-    .header .logo { font-size: 1.5rem; font-weight: 800; }
+    .header .logo { font-size: 1.25rem; font-weight: 800; line-height: 1.25; }
     .header .logo span { color: var(--accent); }
     .header .sub { font-size: 0.95rem; opacity: 0.85; margin-top: 0.25rem; }
 
@@ -263,8 +263,8 @@
 <body>
 
 <div class="header">
-  <div class="logo">Galabau <span>Osmani</span></div>
-  <div class="sub">Garten- & Landschaftsbau · Bietigheim-Bissingen</div>
+  <div class="logo">Garten &amp; Landschaftsbau <span>Osmani GmbH</span></div>
+  <div class="sub">Bietigheim-Bissingen · Ludwigsburg & Umgebung</div>
 </div>
 
 <div class="container">
@@ -287,26 +287,27 @@
       <input type="hidden" name="from_name" value="Messe-Stand Osmani">
       <input type="checkbox" name="botcheck" style="display:none">
 
-      <div class="field">
+      <div class="field" data-field="name">
         <label for="name">Name <span class="req">*</span></label>
-        <input type="text" id="name" name="name" required autocomplete="name" placeholder="Vor- und Nachname">
+        <input type="text" id="name" name="name" autocomplete="name" placeholder="Vor- und Nachname">
         <div class="error-msg">Bitte Namen eingeben.</div>
       </div>
 
-      <div class="field">
+      <div class="field" data-field="phone">
         <label for="phone">Telefon <span class="req">*</span></label>
-        <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="z. B. 0179 1234567" inputmode="tel">
-        <div class="error-msg">Bitte Telefonnummer eingeben.</div>
+        <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="z. B. 0179 1234567" inputmode="tel">
+        <div class="error-msg">Bitte gültige Telefonnummer eingeben (mind. 6 Ziffern).</div>
       </div>
 
-      <div class="field">
+      <div class="field" data-field="email">
         <label for="email">E-Mail</label>
         <input type="email" id="email" name="email" autocomplete="email" placeholder="optional" inputmode="email">
+        <div class="error-msg">Bitte gültige E-Mail-Adresse eingeben.</div>
       </div>
 
-      <div class="field">
+      <div class="field" data-field="plz">
         <label for="plz">PLZ / Ort <span class="req">*</span></label>
-        <input type="text" id="plz" name="plz" required placeholder="z. B. 74321 Bietigheim" inputmode="text">
+        <input type="text" id="plz" name="plz" placeholder="z. B. 74321 Bietigheim" inputmode="text">
         <div class="error-msg">Bitte PLZ oder Ort eingeben.</div>
       </div>
 
@@ -379,17 +380,28 @@
     dsgvoError.style.display = 'none';
   }
 
+  function markError(id) {
+    const el = document.getElementById(id);
+    if (el) el.closest('.field').classList.add('has-error');
+  }
+
   function validate() {
     clearErrors();
     let ok = true;
-    const required = ['name', 'phone', 'plz'];
-    required.forEach(id => {
-      const el = document.getElementById(id);
-      if (!el.value.trim()) {
-        el.closest('.field').classList.add('has-error');
-        ok = false;
-      }
-    });
+
+    const name = document.getElementById('name').value.trim();
+    if (name.length < 2) { markError('name'); ok = false; }
+
+    const phoneRaw = document.getElementById('phone').value.trim();
+    const phoneDigits = phoneRaw.replace(/\D/g, '');
+    if (phoneDigits.length < 6) { markError('phone'); ok = false; }
+
+    const email = document.getElementById('email').value.trim();
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { markError('email'); ok = false; }
+
+    const plz = document.getElementById('plz').value.trim();
+    if (plz.length < 2) { markError('plz'); ok = false; }
+
     if (!form.querySelector('input[name="project"]:checked')) {
       document.getElementById('projectChips').closest('.field').classList.add('has-error');
       ok = false;
