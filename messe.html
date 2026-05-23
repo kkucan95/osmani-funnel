@@ -177,6 +177,66 @@
       border-color: var(--green);
     }
 
+    .image-chip-group {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.6rem;
+    }
+    .image-chip {
+      position: relative;
+      display: block;
+      height: 110px;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      background-size: cover;
+      background-position: center;
+      border: 3px solid var(--border);
+      transition: all 0.15s;
+    }
+    .image-chip input { position: absolute; opacity: 0; pointer-events: none; }
+    .image-chip span {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 0.6rem;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-align: center;
+      line-height: 1.2;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.25) 55%, rgba(0,0,0,0) 100%);
+      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+    }
+    .image-chip input:checked ~ span::after {
+      content: '✓';
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 28px;
+      height: 28px;
+      background: var(--green);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 700;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+    .image-chip:has(input:checked) {
+      border-color: var(--green);
+      transform: scale(0.98);
+      box-shadow: 0 0 0 3px rgba(58,125,68,0.3);
+    }
+    @media (min-width: 600px) {
+      .image-chip-group { grid-template-columns: repeat(3, 1fr); }
+      .image-chip { height: 130px; }
+    }
+
     .checkbox-field {
       display: flex;
       align-items: flex-start;
@@ -340,13 +400,13 @@
       <!-- 2. Projekttyp -->
       <div class="field">
         <label>Worum geht es? <span class="req">*</span></label>
-        <div class="chip-group" id="projectChips">
-          <label class="chip"><input type="radio" name="project" value="Pflasterarbeiten"><span>Pflaster­arbeiten</span></label>
-          <label class="chip"><input type="radio" name="project" value="Einfahrt"><span>Einfahrt</span></label>
-          <label class="chip"><input type="radio" name="project" value="Terrasse"><span>Terrasse</span></label>
-          <label class="chip"><input type="radio" name="project" value="Gartengestaltung"><span>Garten­gestaltung</span></label>
-          <label class="chip"><input type="radio" name="project" value="Mauerbau"><span>Mauerbau</span></label>
-          <label class="chip"><input type="radio" name="project" value="Sonstiges"><span>Sonstiges</span></label>
+        <div class="image-chip-group" id="projectChips">
+          <label class="image-chip" style="background-image:url('/imgs/p-nachher.jpg')"><input type="radio" name="project" value="Pflasterarbeiten"><span>Pflaster­arbeiten</span></label>
+          <label class="image-chip" style="background-image:url('/imgs/einfahrt.jpg')"><input type="radio" name="project" value="Einfahrt"><span>Einfahrt</span></label>
+          <label class="image-chip" style="background-image:url('/imgs/terrasse.jpg')"><input type="radio" name="project" value="Terrasse"><span>Terrasse</span></label>
+          <label class="image-chip" style="background-image:url('/imgs/hero3.jpg')"><input type="radio" name="project" value="Gartengestaltung"><span>Garten­gestaltung</span></label>
+          <label class="image-chip" style="background-image:url('/imgs/hero2.jpg')"><input type="radio" name="project" value="Mauerbau"><span>Mauerbau</span></label>
+          <label class="image-chip" style="background-image:url('/imgs/hero5.jpg')"><input type="radio" name="project" value="Sonstiges"><span>Sonstiges</span></label>
         </div>
         <div class="error-msg">Bitte Bereich auswählen.</div>
       </div>
