@@ -91,8 +91,13 @@
   }
   </script>
 
+  <!-- Performance: Preload LCP Hero-Bilder (Desktop + Mobile) -->
+  <link rel="preload" as="image" href="imgs/hero1.jpg" media="(min-width: 768px)" fetchpriority="high" />
+  <link rel="preload" as="image" href="imgs/hero1-m.jpg" media="(max-width: 767px)" fetchpriority="high" />
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <!-- FAQPage Structured Data -->
@@ -1429,8 +1434,8 @@
       </div>
 
       <div class="featured-ba before-after reveal" data-ba>
-        <div class="ba-after"><img src="imgs/p-vorher3.jpg" alt="Einfahrt pflastern Bietigheim-Bissingen – fertig gepflastert" /></div>
-        <div class="ba-before"><img src="imgs/p-nachher.jpg" alt="Einfahrt Bietigheim-Bissingen vor der Pflasterung" /></div>
+        <div class="ba-after"><img src="imgs/p-vorher3.jpg" alt="Einfahrt pflastern Bietigheim-Bissingen – fertig gepflastert" loading="lazy" decoding="async" /></div>
+        <div class="ba-before"><img src="imgs/p-nachher.jpg" alt="Einfahrt Bietigheim-Bissingen vor der Pflasterung" loading="lazy" decoding="async" /></div>
         <div class="ba-handle"></div>
         <div class="ba-label ba-label-before">Vorher</div>
         <div class="ba-label ba-label-after">Nachher</div>
@@ -1473,7 +1478,7 @@
         <!-- Projekt 1: Terrasse Feinsteinzeug -->
         <div class="project-card reveal" style="transition-delay:.05s">
           <div class="gallery-slide">
-            <img src="imgs/t1.jpg" alt="Terrassenbau Bietigheim-Bissingen – Feinsteinzeugplatten" />
+            <img src="imgs/t1.jpg" alt="Terrassenbau Bietigheim-Bissingen – Feinsteinzeugplatten" loading="lazy" decoding="async" />
             <img src="imgs/t2.jpg" alt="Terrassengestaltung Bietigheim – Rasenfläche und Terrasse" loading="lazy" />
             <img src="imgs/t3.jpg" alt="Terrasse Bietigheim-Bissingen – Seitenansicht" loading="lazy" />
             <img src="imgs/t4.jpg" alt="Gartengestaltung und Terrassenbau Bietigheim" loading="lazy" />
@@ -1494,8 +1499,8 @@
         <!-- Projekt 2: Einfahrt-Sanierung -->
         <div class="project-card reveal" style="transition-delay:.1s">
           <div class="before-after" data-ba>
-            <div class="ba-after"><img src="imgs/p2-nachher-v2.jpg" alt="Einfahrt und Terrasse Tamm – fertig gepflastert mit Garage" /></div>
-            <div class="ba-before"><img src="imgs/p2-vorher.jpg" alt="Einfahrt Tamm vor der Pflasterung" /></div>
+            <div class="ba-after"><img src="imgs/p2-nachher-v2.jpg" alt="Einfahrt und Terrasse Tamm – fertig gepflastert mit Garage" loading="lazy" decoding="async" /></div>
+            <div class="ba-before"><img src="imgs/p2-vorher.jpg" alt="Einfahrt Tamm vor der Pflasterung" loading="lazy" decoding="async" /></div>
             <div class="ba-handle"></div>
             <div class="ba-label ba-label-before">Vorher</div>
             <div class="ba-label ba-label-after">Nachher</div>
@@ -1514,8 +1519,8 @@
         <!-- Projekt 3: Neubau Außenanlagen -->
         <div class="project-card reveal" style="transition-delay:.15s">
           <div class="before-after" data-ba>
-            <div class="ba-after"><img src="imgs/p3-nachher-v2.jpg" alt="Neubau Außenanlagen Sachsenheim – Pflaster und Treppenstufen fertig" /></div>
-            <div class="ba-before"><img src="imgs/p3-vorher.jpg" alt="Neubau Außenbereich Sachsenheim vor Galabau-Arbeiten" /></div>
+            <div class="ba-after"><img src="imgs/p3-nachher-v2.jpg" alt="Neubau Außenanlagen Sachsenheim – Pflaster und Treppenstufen fertig" loading="lazy" decoding="async" /></div>
+            <div class="ba-before"><img src="imgs/p3-vorher.jpg" alt="Neubau Außenbereich Sachsenheim vor Galabau-Arbeiten" loading="lazy" decoding="async" /></div>
             <div class="ba-handle"></div>
             <div class="ba-label ba-label-before">Rohbau</div>
             <div class="ba-label ba-label-after">Fertig</div>
@@ -2024,7 +2029,7 @@
       <div class="footer-top">
         <div class="footer-brand">
           <div class="logo-wrap">
-            <img src="imgs/logo-white.png" alt="Garten & Landschaftsbau Osmani GmbH" class="logo-img" style="height:48px;width:auto;" />
+            <img src="imgs/logo-white.png" alt="Garten & Landschaftsbau Osmani GmbH" class="logo-img" style="height:48px;width:auto;" loading="lazy" decoding="async" />
           </div>
           <p class="footer-tagline">Ihr zuverlässiger Partner für professionellen Garten- und Landschaftsbau in Bietigheim-Bissingen und der Region.</p>
           <p style="margin-top:10px;font-size:.8rem;color:rgba(255,255,255,.4);">
