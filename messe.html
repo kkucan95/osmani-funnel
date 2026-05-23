@@ -129,38 +129,26 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 0.6rem;
     }
-    .chip-group.time-chips { grid-template-columns: repeat(2, 1fr); }
-    .hint {
-      font-size: 0.85rem;
-      color: #666;
-      margin: -0.25rem 0 0.6rem;
-      font-weight: 400;
-    }
-    .date-scroll {
+    .section-divider {
       display: flex;
-      gap: 0.5rem;
-      overflow-x: auto;
-      padding: 0.25rem 0 0.5rem;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: thin;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 1.75rem 0 1.25rem;
     }
-    .date-chip {
-      flex: 0 0 auto;
-      min-width: 78px;
-      padding: 0.7rem 0.6rem;
-      border: 2px solid var(--border);
-      border-radius: 10px;
-      background: #fff;
-      cursor: pointer;
-      text-align: center;
-      font-family: inherit;
-      transition: all 0.15s;
+    .section-divider::before,
+    .section-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
     }
-    .date-chip .dow { display: block; font-size: 0.75rem; color: #666; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
-    .date-chip .day { display: block; font-size: 1.4rem; font-weight: 700; color: var(--dark); line-height: 1.1; margin: 0.15rem 0; }
-    .date-chip .mon { display: block; font-size: 0.75rem; color: #666; font-weight: 500; }
-    .date-chip.active { background: var(--green); border-color: var(--green); }
-    .date-chip.active .dow, .date-chip.active .day, .date-chip.active .mon { color: #fff; }
+    .section-divider span {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
     .chip {
       position: relative;
       display: block;
@@ -324,7 +312,7 @@
   <div id="formView">
     <div class="intro">
       <h1>Kostenlose Vor-Ort-Beratung sichern</h1>
-      <p>Tragen Sie Ihre Daten ein – wir melden uns innerhalb 24 Stunden und vereinbaren Ihren Wunschtermin.</p>
+      <p>Beantworten Sie kurz 3 Fragen – wir melden uns innerhalb 24 Stunden bei Ihnen.</p>
       <div class="badges">
         <div class="badge">✓ Kostenlos</div>
         <div class="badge">✓ Unverbindlich</div>
@@ -338,6 +326,42 @@
       <input type="hidden" name="subject" value="🎯 Neuer Messe-Lead – Osmani Galabau">
       <input type="hidden" name="from_name" value="Messe-Stand Osmani">
       <input type="checkbox" name="botcheck" style="display:none">
+
+      <!-- 1. Wohnsituation -->
+      <div class="field">
+        <label>Sind Sie… <span class="req">*</span></label>
+        <div class="chip-group" id="roleChips">
+          <label class="chip"><input type="radio" name="role" value="Hausbesitzer"><span>Haus­besitzer</span></label>
+          <label class="chip"><input type="radio" name="role" value="Vermieter"><span>Vermieter</span></label>
+          <label class="chip"><input type="radio" name="role" value="Mieter"><span>Mieter</span></label>
+        </div>
+        <div class="error-msg">Bitte auswählen.</div>
+      </div>
+
+      <!-- 2. Projekttyp -->
+      <div class="field">
+        <label>Worum geht es? <span class="req">*</span></label>
+        <div class="chip-group" id="projectChips">
+          <label class="chip"><input type="radio" name="project" value="Pflasterarbeiten"><span>Pflaster­arbeiten</span></label>
+          <label class="chip"><input type="radio" name="project" value="Einfahrt"><span>Einfahrt</span></label>
+          <label class="chip"><input type="radio" name="project" value="Terrasse"><span>Terrasse</span></label>
+          <label class="chip"><input type="radio" name="project" value="Gartengestaltung"><span>Garten­gestaltung</span></label>
+          <label class="chip"><input type="radio" name="project" value="Mauerbau"><span>Mauerbau</span></label>
+          <label class="chip"><input type="radio" name="project" value="Sonstiges"><span>Sonstiges</span></label>
+        </div>
+        <div class="error-msg">Bitte Bereich auswählen.</div>
+      </div>
+
+      <!-- 3. Beschreibung -->
+      <div class="field">
+        <label for="notes">Kurze Beschreibung (optional)</label>
+        <textarea id="notes" name="notes" placeholder="z. B. Größe der Fläche, besondere Wünsche…"></textarea>
+      </div>
+
+      <!-- 4. Kontaktdaten – ans Ende, weil Kunden hier zögerlicher sind -->
+      <div class="section-divider">
+        <span>Ihre Kontaktdaten</span>
+      </div>
 
       <div class="field" data-field="name">
         <label for="name">Name <span class="req">*</span></label>
@@ -364,38 +388,6 @@
       </div>
 
       <div class="field">
-        <label>Worum geht es? <span class="req">*</span></label>
-        <div class="chip-group" id="projectChips">
-          <label class="chip"><input type="radio" name="project" value="Pflasterarbeiten" required><span>Pflaster­arbeiten</span></label>
-          <label class="chip"><input type="radio" name="project" value="Einfahrt"><span>Einfahrt</span></label>
-          <label class="chip"><input type="radio" name="project" value="Terrasse"><span>Terrasse</span></label>
-          <label class="chip"><input type="radio" name="project" value="Gartengestaltung"><span>Garten­gestaltung</span></label>
-          <label class="chip"><input type="radio" name="project" value="Mauerbau"><span>Mauerbau</span></label>
-          <label class="chip"><input type="radio" name="project" value="Sonstiges"><span>Sonstiges</span></label>
-        </div>
-        <div class="error-msg">Bitte Bereich auswählen.</div>
-      </div>
-
-      <div class="field" data-field="appointment">
-        <label>Wunschtermin Vor-Ort-Beratung <span class="req">*</span></label>
-        <p class="hint">Wir bestätigen den Termin innerhalb 24h telefonisch.</p>
-        <div class="date-scroll" id="dateChips"></div>
-        <div class="chip-group time-chips" id="timeChips" style="margin-top:0.75rem;">
-          <label class="chip"><input type="radio" name="time_slot" value="08:00 – 10:00 Uhr"><span>08–10 Uhr</span></label>
-          <label class="chip"><input type="radio" name="time_slot" value="10:00 – 12:00 Uhr"><span>10–12 Uhr</span></label>
-          <label class="chip"><input type="radio" name="time_slot" value="13:00 – 15:00 Uhr"><span>13–15 Uhr</span></label>
-          <label class="chip"><input type="radio" name="time_slot" value="15:00 – 17:00 Uhr"><span>15–17 Uhr</span></label>
-        </div>
-        <input type="hidden" name="appointment_date" id="appointment_date">
-        <div class="error-msg">Bitte Wunschdatum und Zeitfenster auswählen.</div>
-      </div>
-
-      <div class="field">
-        <label for="notes">Kurze Beschreibung (optional)</label>
-        <textarea id="notes" name="notes" placeholder="z. B. Größe der Fläche, besondere Wünsche…"></textarea>
-      </div>
-
-      <div class="field">
         <label for="salesperson">Erfasst von (Vertriebler)</label>
         <input type="text" id="salesperson" name="salesperson" placeholder="Name des Vertrieblers">
       </div>
@@ -415,9 +407,7 @@
   <div id="successView" class="success">
     <div class="check">✓</div>
     <h2>Vielen Dank!</h2>
-    <p>Ihre Anfrage ist bei uns eingegangen.</p>
-    <div id="bookingSummary" class="booking-summary"></div>
-    <p>Wir bestätigen Ihren Wunschtermin innerhalb von 24 Stunden telefonisch.</p>
+    <p>Ihre Anfrage ist bei uns eingegangen. Wir melden uns innerhalb von 24 Stunden telefonisch bei Ihnen, um den kostenlosen Vor-Ort-Termin zu vereinbaren.</p>
     <button type="button" class="btn-reset" id="resetBtn">Nächste Anfrage erfassen</button>
   </div>
 
@@ -431,40 +421,6 @@
   const successView = document.getElementById('successView');
   const resetBtn = document.getElementById('resetBtn');
   const dsgvoError = document.getElementById('dsgvoError');
-
-  // --- Datums-Picker: nächste 14 Werktage (Mo–Sa) ---
-  const dowShort = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
-  const monShort = ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'];
-  const dateChips = document.getElementById('dateChips');
-  const appointmentDate = document.getElementById('appointment_date');
-
-  function buildDateChips() {
-    const today = new Date();
-    today.setHours(0,0,0,0);
-    let added = 0, offset = 1; // ab morgen
-    while (added < 14) {
-      const d = new Date(today);
-      d.setDate(today.getDate() + offset);
-      offset++;
-      if (d.getDay() === 0) continue; // Sonntag überspringen
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'date-chip';
-      const iso = d.toISOString().slice(0,10);
-      btn.dataset.iso = iso;
-      btn.dataset.label = `${dowShort[d.getDay()]}, ${d.getDate()}. ${monShort[d.getMonth()]} ${d.getFullYear()}`;
-      btn.innerHTML = `<span class="dow">${dowShort[d.getDay()]}</span><span class="day">${d.getDate()}</span><span class="mon">${monShort[d.getMonth()]}</span>`;
-      btn.addEventListener('click', () => {
-        dateChips.querySelectorAll('.date-chip').forEach(c => c.classList.remove('active'));
-        btn.classList.add('active');
-        appointmentDate.value = btn.dataset.label;
-        document.querySelector('[data-field="appointment"]').classList.remove('has-error');
-      });
-      dateChips.appendChild(btn);
-      added++;
-    }
-  }
-  buildDateChips();
 
   function clearErrors() {
     form.querySelectorAll('.field').forEach(f => f.classList.remove('has-error'));
@@ -493,12 +449,12 @@
     const plz = document.getElementById('plz').value.trim();
     if (plz.length < 2) { markError('plz'); ok = false; }
 
-    if (!form.querySelector('input[name="project"]:checked')) {
-      document.getElementById('projectChips').closest('.field').classList.add('has-error');
+    if (!form.querySelector('input[name="role"]:checked')) {
+      document.getElementById('roleChips').closest('.field').classList.add('has-error');
       ok = false;
     }
-    if (!appointmentDate.value || !form.querySelector('input[name="time_slot"]:checked')) {
-      document.querySelector('[data-field="appointment"]').classList.add('has-error');
+    if (!form.querySelector('input[name="project"]:checked')) {
+      document.getElementById('projectChips').closest('.field').classList.add('has-error');
       ok = false;
     }
     if (!document.getElementById('dsgvo').checked) {
@@ -530,13 +486,6 @@
       });
       const json = await res.json();
       if (json.success) {
-        const summary = document.getElementById('bookingSummary');
-        if (data.appointment_date && data.time_slot) {
-          summary.innerHTML = `<strong>Ihr Wunschtermin</strong>${data.appointment_date}<br>${data.time_slot}`;
-          summary.style.display = 'inline-block';
-        } else {
-          summary.style.display = 'none';
-        }
         formView.style.display = 'none';
         successView.classList.add('show');
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -552,8 +501,6 @@
 
   resetBtn.addEventListener('click', function() {
     form.reset();
-    dateChips.querySelectorAll('.date-chip').forEach(c => c.classList.remove('active'));
-    appointmentDate.value = '';
     clearErrors();
     submitBtn.disabled = false;
     submitBtn.textContent = 'Beratungstermin anfragen →';
