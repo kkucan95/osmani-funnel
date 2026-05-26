@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="robots" content="noindex, nofollow">
+  <title>KI Gartenvorschau – Osmani Galabau</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #3a7d44;
+      --green-dark: #2c6035;
+      --accent: #f0a500;
+      --dark: #1a1f24;
+      --gray: #f4f6f4;
+      --gray-mid: #e0e5e0;
+      --radius: 14px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--gray);
+      color: var(--dark);
+      min-height: 100dvh;
+      overflow-x: hidden;
+    }
+
+    /* ── PIN OVERLAY ─────────────────────────────────────── */
+    #pin-overlay {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--green-dark);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 32px; padding: 32px;
+    }
+
+    #pin-overlay .logo-text {
+      text-align: center;
+      color: white;
+    }
+    #pin-overlay .logo-text .brand { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
+    #pin-overlay .logo-text .sub { font-size: 13px; opacity: 0.7; margin-top: 4px; }
+
+    #pin-overlay .pin-card {
+      background: white;
+      border-radius: 20px;
+      padding: 32px 28px;
+      width: 100%; max-width: 340px;
+      text-align: center;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.25);
+    }
+    #pin-overlay .pin-card h2 { font-size: 18px; font-weight: 700; margin-bottom: 6px; color: var(--dark); }
+    #pin-overlay .pin-card p { font-size: 14px; color: #666; margin-bottom: 24px; }
+
+    #pin-dots {
+      display: flex; justify-content: center; gap: 14px; margin-bottom: 28px;
+    }
+    .pin-dot {
+      width: 18px; height: 18px; border-radius: 50%;
+      border: 2.5px solid var(--green);
+      background: transparent;
+      transition: background 0.15s;
+    }
+    .pin-dot.filled { background: var(--green); }
+
+    #pin-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+    }
+    .pin-btn {
+      height: 64px; border-radius: 12px;
+      border: 2px solid var(--gray-mid);
+      background: var(--gray);
+      font-size: 22px; font-weight: 600;
+      color: var(--dark); cursor: pointer;
+      transition: background 0.1s, border-color 0.1s, transform 0.1s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .pin-btn:active { background: var(--green); border-color: var(--green); color: white; transform: scale(0.96); }
+    .pin-btn.delete { font-size: 18px; color: #999; }
+
+    #pin-error {
+      color: #c0392b; font-size: 13px; margin-top: 12px;
+      min-height: 18px; font-weight: 500;
+    }
+
+    /* ── HEADER ─────────────────────────────────────────── */
+    header {
+      background: var(--green-dark);
+      color: white; padding: 16px 20px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    header .brand { font-size: 16px; font-weight: 800; }
+    header .sub { font-size: 11px; opacity: 0.7; }
+    header .badge {
+      background: var(--accent); color: var(--dark);
+      font-size: 11px; font-weight: 700;
+      padding: 4px 10px; border-radius: 20px;
+    }
+
+    /* ── MAIN ───────────────────────────────────────────── */
+    main {
+      max-width: 800px; margin: 0 auto;
+      padding: 20px 16px 40px;
+      display: flex; flex-direction: column; gap: 20px;
+    }
+
+    /* ── CARD ───────────────────────────────────────────── */
+    .card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .card-title {
+      font-size: 13px; font-weight: 700; color: var(--green);
+      text-transform: uppercase; letter-spacing: 0.8px;
+      margin-bottom: 14px;
+    }
+
+    /* ── STYLE SELECTOR ─────────────────────────────────── */
+    .style-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+    }
+    .style-btn {
+      padding: 14px 8px; border-radius: 10px;
+      border: 2.5px solid var(--gray-mid);
+      background: var(--gray);
+      cursor: pointer; text-align: center;
+      transition: all 0.15s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .style-btn .icon { font-size: 28px; display: block; margin-bottom: 6px; }
+    .style-btn .label { font-size: 12px; font-weight: 600; color: var(--dark); line-height: 1.3; }
+    .style-btn.active {
+      border-color: var(--green); background: #eaf4ec;
+    }
+    .style-btn.active .label { color: var(--green); }
+
+    /* ── UPLOAD AREA ─────────────────────────────────────── */
+    #drop-zone {
+      border: 2.5px dashed var(--green);
+      border-radius: var(--radius);
+      min-height: 180px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 14px; cursor: pointer;
+      background: #f7fbf8;
+      transition: background 0.15s;
+      -webkit-tap-highlight-color: transparent;
+      position: relative; overflow: hidden;
+    }
+    #drop-zone:active { background: #eaf4ec; }
+    #drop-zone.has-image { border-style: solid; min-height: 240px; }
+    #drop-zone img#preview-img {
+      width: 100%; height: 240px;
+      object-fit: cover; border-radius: 11px;
+      display: none;
+    }
+    #drop-zone.has-image img#preview-img { display: block; }
+    #drop-zone .upload-hint { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+    #drop-zone.has-image .upload-hint { display: none; }
+    .upload-icon { font-size: 40px; }
+    .upload-text { font-size: 15px; font-weight: 600; color: var(--dark); }
+    .upload-sub { font-size: 12px; color: #888; }
+
+    .btn-row { display: flex; gap: 10px; }
+    .btn-secondary {
+      flex: 1; padding: 14px;
+      border-radius: 10px; border: 2px solid var(--green);
+      background: white; color: var(--green);
+      font-size: 14px; font-weight: 600;
+      cursor: pointer; text-align: center;
+      -webkit-tap-highlight-color: transparent;
+      transition: background 0.1s;
+    }
+    .btn-secondary:active { background: #eaf4ec; }
+
+    #file-input { display: none; }
+    #camera-input { display: none; }
+
+    /* ── GENERATE BUTTON ─────────────────────────────────── */
+    #generate-btn {
+      width: 100%; padding: 20px;
+      border-radius: var(--radius);
+      border: none; background: var(--green);
+      color: white; font-size: 18px; font-weight: 700;
+      cursor: pointer; letter-spacing: -0.3px;
+      transition: background 0.15s, transform 0.1s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    #generate-btn:active:not(:disabled) { transform: scale(0.98); background: var(--green-dark); }
+    #generate-btn:disabled {
+      background: #aaa; cursor: not-allowed;
+    }
+
+    /* ── LOADING ─────────────────────────────────────────── */
+    #loading-card { display: none; }
+    #loading-card.visible { display: block; }
+
+    .loading-inner {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 18px; padding: 16px 0;
+    }
+    .spinner {
+      width: 56px; height: 56px;
+      border: 5px solid var(--gray-mid);
+      border-top-color: var(--green);
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .loading-text { font-size: 16px; font-weight: 600; text-align: center; }
+    .loading-sub { font-size: 13px; color: #888; text-align: center; }
+
+    .progress-bar {
+      width: 100%; height: 6px;
+      background: var(--gray-mid); border-radius: 3px; overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%; background: var(--green); border-radius: 3px;
+      width: 0%; transition: width 0.5s ease;
+    }
+
+    /* ── RESULT ──────────────────────────────────────────── */
+    #result-card { display: none; }
+    #result-card.visible { display: block; }
+
+    /* Before/After Slider */
+    .comparison {
+      position: relative; overflow: hidden;
+      border-radius: 11px; user-select: none;
+      touch-action: none;
+      background: #000;
+    }
+    .comparison .after-side {
+      display: block; width: 100%; height: auto;
+    }
+    .comparison .before-side {
+      position: absolute; top: 0; left: 0; overflow: hidden;
+    }
+    .comparison .before-side img {
+      display: block; height: 100%; width: auto; max-width: none;
+    }
+    .comparison .slider-handle {
+      position: absolute; top: 0; bottom: 0;
+      width: 3px; background: white; cursor: ew-resize;
+      transform: translateX(-50%);
+    }
+    .comparison .slider-handle::after {
+      content: '◀ ▶';
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 44px; height: 44px;
+      border-radius: 50%; background: white;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.35);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; color: var(--dark); font-weight: 700;
+      letter-spacing: -1px;
+      line-height: 44px; text-align: center;
+    }
+
+    .result-labels {
+      display: flex; justify-content: space-between;
+      margin-top: 8px; padding: 0 4px;
+    }
+    .result-labels span {
+      font-size: 12px; font-weight: 600; color: #888;
+    }
+
+    /* ── CTA ─────────────────────────────────────────────── */
+    .cta-box {
+      margin-top: 20px; padding: 20px;
+      background: linear-gradient(135deg, #eaf4ec, #d4edda);
+      border-radius: var(--radius); text-align: center;
+    }
+    .cta-box p { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .cta-box .sub { font-size: 13px; color: #555; margin-bottom: 16px; }
+    .cta-wa {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 24px; border-radius: 10px;
+      background: #25D366; color: white;
+      font-size: 15px; font-weight: 700;
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .new-photo-btn {
+      display: block; margin-top: 12px;
+      padding: 12px; border-radius: 10px;
+      border: 2px solid var(--green); background: white;
+      color: var(--green); font-size: 14px; font-weight: 600;
+      cursor: pointer; text-align: center;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* ── ERROR ───────────────────────────────────────────── */
+    #error-msg {
+      display: none; padding: 14px 16px;
+      background: #fdecea; border-radius: 10px;
+      color: #c0392b; font-size: 14px; font-weight: 500;
+    }
+    #error-msg.visible { display: block; }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (min-width: 600px) {
+      .style-btn .label { font-size: 13px; }
+      #generate-btn { font-size: 20px; }
+      main { padding: 28px 24px 48px; }
+    }
+    @media (min-width: 700px) {
+      .style-grid { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── PIN OVERLAY ─────────────────────────────────────────── -->
+<div id="pin-overlay">
+  <div class="logo-text">
+    <div class="brand">Osmani Galabau</div>
+    <div class="sub">Garten- & Landschaftsbau</div>
+  </div>
+  <div class="pin-card">
+    <h2>Mitarbeiter-Zugang</h2>
+    <p>Bitte PIN eingeben</p>
+    <div id="pin-dots">
+      <div class="pin-dot" id="d0"></div>
+      <div class="pin-dot" id="d1"></div>
+      <div class="pin-dot" id="d2"></div>
+      <div class="pin-dot" id="d3"></div>
+    </div>
+    <div id="pin-grid">
+      <button class="pin-btn" onclick="pinPress('1')">1</button>
+      <button class="pin-btn" onclick="pinPress('2')">2</button>
+      <button class="pin-btn" onclick="pinPress('3')">3</button>
+      <button class="pin-btn" onclick="pinPress('4')">4</button>
+      <button class="pin-btn" onclick="pinPress('5')">5</button>
+      <button class="pin-btn" onclick="pinPress('6')">6</button>
+      <button class="pin-btn" onclick="pinPress('7')">7</button>
+      <button class="pin-btn" onclick="pinPress('8')">8</button>
+      <button class="pin-btn" onclick="pinPress('9')">9</button>
+      <button class="pin-btn" onclick="pinPress('')"></button>
+      <button class="pin-btn" onclick="pinPress('0')">0</button>
+      <button class="pin-btn delete" onclick="pinDelete()">⌫</button>
+    </div>
+    <div id="pin-error"></div>
+  </div>
+</div>
+
+<!-- ── HEADER ──────────────────────────────────────────────── -->
+<header>
+  <div>
+    <div class="brand">Osmani Galabau</div>
+    <div class="sub">KI Gartenvorschau</div>
+  </div>
+  <div class="badge">Intern</div>
+</header>
+
+<!-- ── MAIN APP ────────────────────────────────────────────── -->
+<main>
+
+  <!-- Stil wählen -->
+  <div class="card">
+    <div class="card-title">1. Art der Arbeit wählen</div>
+    <div class="style-grid">
+      <button class="style-btn active" data-style="garden" onclick="selectStyle(this)">
+        <span class="icon">🌿</span>
+        <span class="label">Garten­gestaltung</span>
+      </button>
+      <button class="style-btn" data-style="driveway" onclick="selectStyle(this)">
+        <span class="icon">🧱</span>
+        <span class="label">Einfahrt / Pflaster</span>
+      </button>
+      <button class="style-btn" data-style="outdoor">
+        <span class="icon">🏡</span>
+        <span class="label">Außen­anlagen</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Foto -->
+  <div class="card">
+    <div class="card-title">2. Foto des aktuellen Zustands</div>
+    <div id="drop-zone" onclick="document.getElementById('file-input').click()">
+      <img id="preview-img" alt="Vorschau">
+      <div class="upload-hint">
+        <span class="upload-icon">📷</span>
+        <span class="upload-text">Foto auswählen</span>
+        <span class="upload-sub">Tippe hier um ein Foto zu wählen</span>
+      </div>
+    </div>
+    <input type="file" id="file-input" accept="image/*" onchange="handleFile(this.files[0])">
+    <input type="file" id="camera-input" accept="image/*" capture="environment" onchange="handleFile(this.files[0])">
+    <div class="btn-row" style="margin-top: 12px;">
+      <button class="btn-secondary" onclick="document.getElementById('camera-input').click()">
+        📸 Foto aufnehmen
+      </button>
+      <button class="btn-secondary" onclick="document.getElementById('file-input').click()">
+        🖼️ Aus Galerie
+      </button>
+    </div>
+  </div>
+
+  <!-- Fehler -->
+  <div id="error-msg"></div>
+
+  <!-- Generate -->
+  <button id="generate-btn" disabled onclick="generate()">
+    ✨ KI Vorschau erstellen
+  </button>
+
+  <!-- Loading -->
+  <div class="card" id="loading-card">
+    <div class="loading-inner">
+      <div class="spinner"></div>
+      <div class="loading-text">KI erstellt Ihren Gartenvorschau…</div>
+      <div class="loading-sub">Das dauert ca. 20–40 Sekunden</div>
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- Result -->
+  <div class="card" id="result-card">
+    <div class="card-title">Vorher / Nachher Vergleich</div>
+    <div class="comparison" id="comparison">
+      <img class="after-side" id="after-img" alt="Nach KI-Bearbeitung">
+      <div class="before-side" id="before-side">
+        <img id="before-img" alt="Vorher">
+      </div>
+      <div class="slider-handle" id="slider-handle"></div>
+    </div>
+    <div class="result-labels">
+      <span>◀ Vorher</span>
+      <span>Nachher ▶</span>
+    </div>
+    <div class="cta-box">
+      <p>Gefällt dem Kunden das Ergebnis?</p>
+      <div class="sub">Jetzt kostenloses Angebot anfragen</div>
+      <a class="cta-wa" href="https://wa.me/4917915885760?text=Ich%20habe%20die%20KI-Vorschau%20gesehen%20und%20m%C3%B6chte%20ein%20kostenloses%20Angebot%20anfordern." target="_blank">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Angebot via WhatsApp
+      </a>
+      <button class="new-photo-btn" onclick="resetTool()">🔄 Neues Foto analysieren</button>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  // ── CONFIG ────────────────────────────────────────────────
+  // PIN ändern: Hier die 4-stellige Zahl anpassen
+  const CORRECT_PIN = "1234";
+  const SESSION_KEY = "osmani_ki_auth";
+
+  // ── PIN LOGIC ─────────────────────────────────────────────
+  let pinInput = "";
+
+  function pinPress(digit) {
+    if (!digit || pinInput.length >= 4) return;
+    pinInput += digit;
+    updatePinDots();
+    if (pinInput.length === 4) setTimeout(checkPin, 120);
+  }
+
+  function pinDelete() {
+    pinInput = pinInput.slice(0, -1);
+    updatePinDots();
+    document.getElementById("pin-error").textContent = "";
+  }
+
+  function updatePinDots() {
+    for (let i = 0; i < 4; i++) {
+      document.getElementById("d" + i).classList.toggle("filled", i < pinInput.length);
+    }
+  }
+
+  function checkPin() {
+    if (pinInput === CORRECT_PIN) {
+      sessionStorage.setItem(SESSION_KEY, "1");
+      document.getElementById("pin-overlay").style.display = "none";
+    } else {
+      document.getElementById("pin-error").textContent = "Falscher PIN. Bitte erneut versuchen.";
+      pinInput = "";
+      updatePinDots();
+    }
+  }
+
+  // Check if already authenticated this session
+  if (sessionStorage.getItem(SESSION_KEY) === "1") {
+    document.getElementById("pin-overlay").style.display = "none";
+  }
+
+  // ── STYLE SELECTOR ────────────────────────────────────────
+  let selectedStyle = "garden";
+
+  function selectStyle(btn) {
+    document.querySelectorAll(".style-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    selectedStyle = btn.dataset.style;
+  }
+
+  // Wire up the third button (inline onclick didn't capture reference)
+  document.querySelectorAll(".style-btn").forEach(btn => {
+    btn.addEventListener("click", () => selectStyle(btn));
+  });
+
+  // ── IMAGE HANDLING ────────────────────────────────────────
+  let originalDataUrl = null;
+
+  function handleFile(file) {
+    if (!file) return;
+    if (!file.type.startsWith("image/")) {
+      showError("Bitte ein Bild auswählen (JPG, PNG).");
+      return;
+    }
+    hideError();
+    compressImage(file).then(dataUrl => {
+      originalDataUrl = dataUrl;
+      const preview = document.getElementById("preview-img");
+      preview.src = dataUrl;
+      document.getElementById("drop-zone").classList.add("has-image");
+      document.getElementById("generate-btn").disabled = false;
+    });
+  }
+
+  function compressImage(file) {
+    return new Promise(resolve => {
+      const img = new Image();
+      img.onload = () => {
+        const MAX = 1024;
+        let w = img.width, h = img.height;
+        if (w > h) { if (w > MAX) { h = Math.round(h * MAX / w); w = MAX; } }
+        else        { if (h > MAX) { w = Math.round(w * MAX / h); h = MAX; } }
+        const canvas = document.createElement("canvas");
+        canvas.width = w; canvas.height = h;
+        canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+        resolve(canvas.toDataURL("image/jpeg", 0.85));
+      };
+      img.src = URL.createObjectURL(file);
+    });
+  }
+
+  // Drag & Drop support
+  const dropZone = document.getElementById("drop-zone");
+  dropZone.addEventListener("dragover", e => { e.preventDefault(); dropZone.style.background = "#eaf4ec"; });
+  dropZone.addEventListener("dragleave", () => { dropZone.style.background = ""; });
+  dropZone.addEventListener("drop", e => {
+    e.preventDefault();
+    dropZone.style.background = "";
+    const file = e.dataTransfer.files[0];
+    if (file) handleFile(file);
+  });
+
+  // ── GENERATE ──────────────────────────────────────────────
+  let pollInterval = null;
+
+  async function generate() {
+    if (!originalDataUrl) return;
+    hideError();
+    setLoading(true);
+    startProgress();
+
+    try {
+      const res = await fetch("/api/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ image: originalDataUrl, style: selectedStyle })
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || data.error) {
+        throw new Error(data.error || "Generierung fehlgeschlagen");
+      }
+
+      if (data.imageUrl) {
+        showResult(data.imageUrl);
+        return;
+      }
+
+      // Poll for result if still processing
+      if (data.predictionId) {
+        pollForResult(data.predictionId);
+        return;
+      }
+
+      throw new Error("Unbekannte Antwort vom Server");
+
+    } catch (err) {
+      setLoading(false);
+      stopProgress();
+      showError(err.message || "Verbindungsfehler. Bitte erneut versuchen.");
+    }
+  }
+
+  function pollForResult(predictionId) {
+    let attempts = 0;
+    pollInterval = setInterval(async () => {
+      attempts++;
+      if (attempts > 30) {
+        clearInterval(pollInterval);
+        setLoading(false);
+        stopProgress();
+        showError("Zeitüberschreitung. Bitte erneut versuchen.");
+        return;
+      }
+      try {
+        const res = await fetch(`/api/poll?id=${predictionId}`);
+        const data = await res.json();
+        if (data.imageUrl) {
+          clearInterval(pollInterval);
+          showResult(data.imageUrl);
+        } else if (data.status === "failed") {
+          clearInterval(pollInterval);
+          setLoading(false);
+          stopProgress();
+          showError(data.error || "Generierung fehlgeschlagen");
+        }
+      } catch (_) {}
+    }, 3000);
+  }
+
+  // ── RESULT ────────────────────────────────────────────────
+  function showResult(imageUrl) {
+    setLoading(false);
+    stopProgress();
+
+    const afterImg = document.getElementById("after-img");
+    const beforeImg = document.getElementById("before-img");
+    afterImg.src = imageUrl;
+    beforeImg.src = originalDataUrl;
+
+    afterImg.onload = () => {
+      // Match before-side height to after image
+      const beforeSide = document.getElementById("before-side");
+      const comparison = document.getElementById("comparison");
+      const ratio = afterImg.naturalHeight / afterImg.naturalWidth;
+      const displayW = afterImg.offsetWidth;
+      const displayH = displayW * ratio;
+      beforeImg.style.height = displayH + "px";
+      beforeImg.style.width = displayW + "px";
+      beforeSide.style.height = displayH + "px";
+      initSlider();
+    };
+
+    document.getElementById("result-card").classList.add("visible");
+    document.getElementById("result-card").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  // ── SLIDER ────────────────────────────────────────────────
+  function initSlider() {
+    const comparison = document.getElementById("comparison");
+    const handle = document.getElementById("slider-handle");
+    const beforeSide = document.getElementById("before-side");
+
+    setSliderPos(0.5);
+
+    function setSliderPos(fraction) {
+      const pct = Math.max(0, Math.min(1, fraction)) * 100;
+      handle.style.left = pct + "%";
+      beforeSide.style.width = pct + "%";
+    }
+
+    function getPos(e) {
+      const rect = comparison.getBoundingClientRect();
+      const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+      return x / rect.width;
+    }
+
+    let dragging = false;
+    handle.addEventListener("mousedown", e => { dragging = true; e.preventDefault(); });
+    document.addEventListener("mousemove", e => { if (dragging) setSliderPos(getPos(e)); });
+    document.addEventListener("mouseup", () => { dragging = false; });
+
+    comparison.addEventListener("touchstart", e => { dragging = true; }, { passive: true });
+    comparison.addEventListener("touchmove", e => {
+      if (dragging) { e.preventDefault(); setSliderPos(getPos(e)); }
+    }, { passive: false });
+    comparison.addEventListener("touchend", () => { dragging = false; });
+  }
+
+  // ── RESET ─────────────────────────────────────────────────
+  function resetTool() {
+    originalDataUrl = null;
+    document.getElementById("preview-img").src = "";
+    document.getElementById("drop-zone").classList.remove("has-image");
+    document.getElementById("generate-btn").disabled = true;
+    document.getElementById("result-card").classList.remove("visible");
+    document.getElementById("file-input").value = "";
+    document.getElementById("camera-input").value = "";
+    hideError();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  // ── HELPERS ───────────────────────────────────────────────
+  function setLoading(on) {
+    document.getElementById("loading-card").classList.toggle("visible", on);
+    document.getElementById("generate-btn").disabled = on;
+  }
+
+  let progressTimer = null;
+  function startProgress() {
+    const fill = document.getElementById("progress-fill");
+    fill.style.width = "0%";
+    let pct = 0;
+    progressTimer = setInterval(() => {
+      pct = Math.min(pct + Math.random() * 3, 90);
+      fill.style.width = pct + "%";
+    }, 800);
+  }
+  function stopProgress() {
+    clearInterval(progressTimer);
+    const fill = document.getElementById("progress-fill");
+    fill.style.width = "100%";
+    setTimeout(() => { fill.style.width = "0%"; }, 600);
+  }
+
+  function showError(msg) {
+    const el = document.getElementById("error-msg");
+    el.textContent = msg;
+    el.classList.add("visible");
+  }
+  function hideError() {
+    document.getElementById("error-msg").classList.remove("visible");
+  }
+</script>
+<script src="/assets/floating-cta.js" defer></script>
+</body>
+</html>
