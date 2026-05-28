@@ -21,10 +21,10 @@
   #osmani-floating-cta .osmani-fab--wa { background: #25D366; }\
   #osmani-floating-cta .osmani-fab--call { background: #3a7d44; }\
   #osmani-floating-cta .osmani-fab svg { width: 30px; height: 30px; fill: #fff; }\
-  /* Mobile: position mid-right vertically to avoid hero CTA overlap */\
+  /* Mobile: bottom-right, compact */\
   @media (max-width: 768px) {\
-    #osmani-floating-cta { right: 10px; bottom: auto; top: 50%; transform: translateY(-50%); gap: 12px; }\
-    #osmani-floating-cta .osmani-fab { width: 48px; height: 48px; }\
+    #osmani-floating-cta { right: 12px; bottom: 14px; gap: 10px; }\
+    #osmani-floating-cta .osmani-fab { width: 46px; height: 46px; }\
     #osmani-floating-cta .osmani-fab svg { width: 22px; height: 22px; }\
   }\
   /* Always visible – pointer events handled per-button */\
