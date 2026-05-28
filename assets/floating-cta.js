@@ -21,19 +21,17 @@
   #osmani-floating-cta .osmani-fab--wa { background: #25D366; }\
   #osmani-floating-cta .osmani-fab--call { background: #3a7d44; }\
   #osmani-floating-cta .osmani-fab svg { width: 30px; height: 30px; fill: #fff; }\
-  /* Mobile: smaller, higher position to avoid hero CTA overlap */\
+  /* Mobile: position mid-right vertically to avoid hero CTA overlap */\
   @media (max-width: 768px) {\
-    #osmani-floating-cta { right: 10px; bottom: 90px; gap: 12px; }\
+    #osmani-floating-cta { right: 10px; bottom: auto; top: 50%; transform: translateY(-50%); gap: 12px; }\
     #osmani-floating-cta .osmani-fab { width: 48px; height: 48px; }\
     #osmani-floating-cta .osmani-fab svg { width: 22px; height: 22px; }\
   }\
-  /* Hidden by default until user scrolls past hero */\
-  #osmani-floating-cta { opacity: 0; transform: translateY(20px); transition: opacity 0.3s ease, transform 0.3s ease; pointer-events: none; }\
-  #osmani-floating-cta.osmani-visible { opacity: 1; transform: translateY(0); pointer-events: none; }\
-  #osmani-floating-cta.osmani-visible .osmani-fab { pointer-events: auto; }\
+  /* Always visible – pointer events handled per-button */\
+  #osmani-floating-cta .osmani-fab { pointer-events: auto; }\
   /* Subtle glow-pulse for WA (no expanding halo) */\
   @keyframes osmani-wa-glow { 0%, 100% { box-shadow: 0 4px 18px rgba(0,0,0,0.25); } 50% { box-shadow: 0 4px 22px rgba(37,211,102,0.65); } }\
-  #osmani-floating-cta.osmani-visible .osmani-fab--wa { animation: osmani-wa-glow 2.8s ease-in-out infinite; }\
+  #osmani-floating-cta .osmani-fab--wa { animation: osmani-wa-glow 2.8s ease-in-out infinite; }\
   ';
 
   var styleEl = document.createElement('style');
@@ -64,43 +62,12 @@
   container.appendChild(waLink);
   container.appendChild(callLink);
 
-  // Inject when body ready, then set up scroll-based visibility
-  function attachAndWire() {
-    document.body.appendChild(container);
-
-    // Show after scrolling past ~30% of viewport (just past the hero CTAs)
-    var threshold = Math.max(200, window.innerHeight * 0.3);
-    var ticking = false;
-
-    function update() {
-      if (window.scrollY > threshold) {
-        container.classList.add('osmani-visible');
-      } else {
-        container.classList.remove('osmani-visible');
-      }
-      ticking = false;
-    }
-
-    function onScroll() {
-      if (!ticking) {
-        window.requestAnimationFrame(update);
-        ticking = true;
-      }
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', function() {
-      threshold = Math.max(200, window.innerHeight * 0.3);
-      update();
-    }, { passive: true });
-
-    // Initial check (in case user lands mid-page)
-    update();
-  }
-
+  // Inject when body ready
   if (document.body) {
-    attachAndWire();
+    document.body.appendChild(container);
   } else {
-    document.addEventListener('DOMContentLoaded', attachAndWire);
+    document.addEventListener('DOMContentLoaded', function() {
+      document.body.appendChild(container);
+    });
   }
 })();
