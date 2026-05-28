@@ -68,8 +68,8 @@
   function attachAndWire() {
     document.body.appendChild(container);
 
-    // Show after scrolling past ~80% of viewport (out of hero area)
-    var threshold = Math.max(300, window.innerHeight * 0.8);
+    // Show after scrolling past ~30% of viewport (just past the hero CTAs)
+    var threshold = Math.max(200, window.innerHeight * 0.3);
     var ticking = false;
 
     function update() {
@@ -90,7 +90,7 @@
 
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', function() {
-      threshold = Math.max(300, window.innerHeight * 0.8);
+      threshold = Math.max(200, window.innerHeight * 0.3);
       update();
     }, { passive: true });
 
