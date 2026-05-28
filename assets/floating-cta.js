@@ -16,21 +16,24 @@
   #osmani-floating-cta .osmani-fab:active { transform: translateY(0); }\
   #osmani-floating-cta .osmani-fab svg { display: block; }\
   /* Desktop / Tablet: WhatsApp + Phone bottom-right */\
-  #osmani-floating-cta { right: 18px; bottom: 18px; display: flex; flex-direction: column; gap: 12px; }\
+  #osmani-floating-cta { right: 18px; bottom: 18px; display: flex; flex-direction: column; gap: 14px; }\
   #osmani-floating-cta .osmani-fab { width: 58px; height: 58px; }\
   #osmani-floating-cta .osmani-fab--wa { background: #25D366; }\
   #osmani-floating-cta .osmani-fab--call { background: #3a7d44; }\
   #osmani-floating-cta .osmani-fab svg { width: 30px; height: 30px; fill: #fff; }\
-  #osmani-floating-cta .osmani-fab-label { display: none; }\
-  /* Mobile: Bigger pill-style with label */\
+  /* Mobile: smaller, higher position to avoid hero CTA overlap */\
   @media (max-width: 768px) {\
-    #osmani-floating-cta { right: 12px; bottom: 12px; gap: 10px; }\
-    #osmani-floating-cta .osmani-fab { width: 54px; height: 54px; }\
-    #osmani-floating-cta .osmani-fab svg { width: 26px; height: 26px; }\
+    #osmani-floating-cta { right: 10px; bottom: 90px; gap: 12px; }\
+    #osmani-floating-cta .osmani-fab { width: 48px; height: 48px; }\
+    #osmani-floating-cta .osmani-fab svg { width: 22px; height: 22px; }\
   }\
-  /* Pulse animation for WA */\
-  @keyframes osmani-pulse { 0% { box-shadow: 0 4px 18px rgba(37,211,102,0.45), 0 0 0 0 rgba(37,211,102,0.45); } 70% { box-shadow: 0 4px 18px rgba(37,211,102,0.45), 0 0 0 12px rgba(37,211,102,0); } 100% { box-shadow: 0 4px 18px rgba(37,211,102,0.45), 0 0 0 0 rgba(37,211,102,0); } }\
-  #osmani-floating-cta .osmani-fab--wa { animation: osmani-pulse 2.4s infinite; }\
+  /* Hidden by default until user scrolls past hero */\
+  #osmani-floating-cta { opacity: 0; transform: translateY(20px); transition: opacity 0.3s ease, transform 0.3s ease; pointer-events: none; }\
+  #osmani-floating-cta.osmani-visible { opacity: 1; transform: translateY(0); pointer-events: none; }\
+  #osmani-floating-cta.osmani-visible .osmani-fab { pointer-events: auto; }\
+  /* Subtle glow-pulse for WA (no expanding halo) */\
+  @keyframes osmani-wa-glow { 0%, 100% { box-shadow: 0 4px 18px rgba(0,0,0,0.25); } 50% { box-shadow: 0 4px 22px rgba(37,211,102,0.65); } }\
+  #osmani-floating-cta.osmani-visible .osmani-fab--wa { animation: osmani-wa-glow 2.8s ease-in-out infinite; }\
   ';
 
   var styleEl = document.createElement('style');
@@ -61,12 +64,43 @@
   container.appendChild(waLink);
   container.appendChild(callLink);
 
-  // Inject when body ready
-  if (document.body) {
+  // Inject when body ready, then set up scroll-based visibility
+  function attachAndWire() {
     document.body.appendChild(container);
+
+    // Show after scrolling past ~80% of viewport (out of hero area)
+    var threshold = Math.max(300, window.innerHeight * 0.8);
+    var ticking = false;
+
+    function update() {
+      if (window.scrollY > threshold) {
+        container.classList.add('osmani-visible');
+      } else {
+        container.classList.remove('osmani-visible');
+      }
+      ticking = false;
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(update);
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', function() {
+      threshold = Math.max(300, window.innerHeight * 0.8);
+      update();
+    }, { passive: true });
+
+    // Initial check (in case user lands mid-page)
+    update();
+  }
+
+  if (document.body) {
+    attachAndWire();
   } else {
-    document.addEventListener('DOMContentLoaded', function() {
-      document.body.appendChild(container);
-    });
+    document.addEventListener('DOMContentLoaded', attachAndWire);
   }
 })();
