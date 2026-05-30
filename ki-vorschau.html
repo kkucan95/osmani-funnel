@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="robots" content="noindex, nofollow">
-  <title>KI Gartenvorschau – Osmani Galabau</title>
+  <title>KI Gartenvorschau â€“ Osmani Galabau</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -27,7 +27,7 @@
       overflow-x: hidden;
     }
 
-    /* ── PIN OVERLAY ─────────────────────────────────────── */
+    /* â”€â”€ PIN OVERLAY â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
     #pin-overlay {
       position: fixed; inset: 0; z-index: 9999;
       background: var(--green-dark);
@@ -85,7 +85,7 @@
       min-height: 18px; font-weight: 500;
     }
 
-    /* ── HEADER ─────────────────────────────────────────── */
+    /* â”€â”€ HEADER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
     header {
       background: var(--green-dark);
       color: white; padding: 16px 20px;
@@ -99,14 +99,14 @@
       padding: 4px 10px; border-radius: 20px;
     }
 
-    /* ── MAIN ───────────────────────────────────────────── */
+    /* â”€â”€ MAIN â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
     main {
       max-width: 800px; margin: 0 auto;
       padding: 20px 16px 40px;
       display: flex; flex-direction: column; gap: 20px;
     }
 
-    /* ── CARD ───────────────────────────────────────────── */
+    /* â”€â”€ CARD â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
     .card {
       background: white;
       border-radius: var(--radius);
@@ -119,7 +119,7 @@
       margin-bottom: 14px;
     }
 
-    /* ── STYLE SELECTOR ─────────────────────────────────── */
+    /* â”€â”€ STYLE SELECTOR â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
     .style-grid {
       display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
     }
@@ -138,7 +138,7 @@
     }
     .style-btn.active .label { color: var(--green); }
 
-    /* ── UPLOAD AREA ─────────────────────────────────────── */
+    /* â”€â”€ UPLOAD AREA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
     #drop-zone {
       border: 2.5px dashed var(--green);
       border-radius: var(--radius);
@@ -180,7 +180,7 @@
     #file-input { display: none; }
     #camera-input { display: none; }
 
-    /* ── GENERATE BUTTON ─────────────────────────────────── */
+    /* â”€â”€ GENERATE BUTTON â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
     #generate-btn {
       width: 100%; padding: 20px;
       border-radius: var(--radius);
@@ -195,7 +195,7 @@
       background: #aaa; cursor: not-allowed;
     }
 
-    /* ── LOADING ─────────────────────────────────────────── */
+    /* â”€â”€ LOADING â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
     #loading-card { display: none; }
     #loading-card.visible { display: block; }
 
@@ -224,7 +224,7 @@
       width: 0%; transition: width 0.5s ease;
     }
 
-    /* ── RESULT ──────────────────────────────────────────── */
+    /* â”€â”€ RESULT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
     #result-card { display: none; }
     #result-card.visible { display: block; }
 
@@ -250,7 +250,7 @@
       transform: translateX(-50%);
     }
     .comparison .slider-handle::after {
-      content: '◀ ▶';
+      content: 'â—€ â–¶';
       position: absolute; top: 50%; left: 50%;
       transform: translate(-50%, -50%);
       width: 44px; height: 44px;
@@ -270,7 +270,7 @@
       font-size: 12px; font-weight: 600; color: #888;
     }
 
-    /* ── CTA ─────────────────────────────────────────────── */
+    /* â”€â”€ CTA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
     .cta-box {
       margin-top: 20px; padding: 20px;
       background: linear-gradient(135deg, #eaf4ec, #d4edda);
@@ -295,7 +295,7 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* ── ERROR ───────────────────────────────────────────── */
+    /* â”€â”€ ERROR â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
     #error-msg {
       display: none; padding: 14px 16px;
       background: #fdecea; border-radius: 10px;
@@ -303,7 +303,7 @@
     }
     #error-msg.visible { display: block; }
 
-    /* ── RESPONSIVE ──────────────────────────────────────── */
+    /* â”€â”€ RESPONSIVE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
     @media (min-width: 600px) {
       .style-btn .label { font-size: 13px; }
       #generate-btn { font-size: 20px; }
@@ -313,10 +313,11 @@
       .style-grid { grid-template-columns: repeat(3, 1fr); gap: 14px; }
     }
   </style>
+  <script src="/assets/meta-pixel.js"></script>
 </head>
 <body>
 
-<!-- ── PIN OVERLAY ─────────────────────────────────────────── -->
+<!-- â”€â”€ PIN OVERLAY â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
 <div id="pin-overlay">
   <div class="logo-text">
     <div class="brand">Osmani Galabau</div>
@@ -343,13 +344,13 @@
       <button class="pin-btn" onclick="pinPress('9')">9</button>
       <button class="pin-btn" onclick="pinPress('')"></button>
       <button class="pin-btn" onclick="pinPress('0')">0</button>
-      <button class="pin-btn delete" onclick="pinDelete()">⌫</button>
+      <button class="pin-btn delete" onclick="pinDelete()">âŒ«</button>
     </div>
     <div id="pin-error"></div>
   </div>
 </div>
 
-<!-- ── HEADER ──────────────────────────────────────────────── -->
+<!-- â”€â”€ HEADER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
 <header>
   <div>
     <div class="brand">Osmani Galabau</div>
@@ -358,24 +359,24 @@
   <div class="badge">Intern</div>
 </header>
 
-<!-- ── MAIN APP ────────────────────────────────────────────── -->
+<!-- â”€â”€ MAIN APP â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
 <main>
 
-  <!-- Stil wählen -->
+  <!-- Stil wÃ¤hlen -->
   <div class="card">
-    <div class="card-title">1. Art der Arbeit wählen</div>
+    <div class="card-title">1. Art der Arbeit wÃ¤hlen</div>
     <div class="style-grid">
       <button class="style-btn active" data-style="garden" onclick="selectStyle(this)">
-        <span class="icon">🌿</span>
-        <span class="label">Garten­gestaltung</span>
+        <span class="icon">ðŸŒ¿</span>
+        <span class="label">GartenÂ­gestaltung</span>
       </button>
       <button class="style-btn" data-style="driveway" onclick="selectStyle(this)">
-        <span class="icon">🧱</span>
+        <span class="icon">ðŸ§±</span>
         <span class="label">Einfahrt / Pflaster</span>
       </button>
       <button class="style-btn" data-style="outdoor">
-        <span class="icon">🏡</span>
-        <span class="label">Außen­anlagen</span>
+        <span class="icon">ðŸ¡</span>
+        <span class="label">AuÃŸenÂ­anlagen</span>
       </button>
     </div>
   </div>
@@ -386,19 +387,19 @@
     <div id="drop-zone" onclick="document.getElementById('file-input').click()">
       <img id="preview-img" alt="Vorschau">
       <div class="upload-hint">
-        <span class="upload-icon">📷</span>
-        <span class="upload-text">Foto auswählen</span>
-        <span class="upload-sub">Tippe hier um ein Foto zu wählen</span>
+        <span class="upload-icon">ðŸ“·</span>
+        <span class="upload-text">Foto auswÃ¤hlen</span>
+        <span class="upload-sub">Tippe hier um ein Foto zu wÃ¤hlen</span>
       </div>
     </div>
     <input type="file" id="file-input" accept="image/*" onchange="handleFile(this.files[0])">
     <input type="file" id="camera-input" accept="image/*" capture="environment" onchange="handleFile(this.files[0])">
     <div class="btn-row" style="margin-top: 12px;">
       <button class="btn-secondary" onclick="document.getElementById('camera-input').click()">
-        📸 Foto aufnehmen
+        ðŸ“¸ Foto aufnehmen
       </button>
       <button class="btn-secondary" onclick="document.getElementById('file-input').click()">
-        🖼️ Aus Galerie
+        ðŸ–¼ï¸ Aus Galerie
       </button>
     </div>
   </div>
@@ -408,15 +409,15 @@
 
   <!-- Generate -->
   <button id="generate-btn" disabled onclick="generate()">
-    ✨ KI Vorschau erstellen
+    âœ¨ KI Vorschau erstellen
   </button>
 
   <!-- Loading -->
   <div class="card" id="loading-card">
     <div class="loading-inner">
       <div class="spinner"></div>
-      <div class="loading-text">KI erstellt Ihren Gartenvorschau…</div>
-      <div class="loading-sub">Das dauert ca. 20–40 Sekunden</div>
+      <div class="loading-text">KI erstellt Ihren Gartenvorschauâ€¦</div>
+      <div class="loading-sub">Das dauert ca. 20â€“40 Sekunden</div>
       <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
     </div>
   </div>
@@ -432,29 +433,29 @@
       <div class="slider-handle" id="slider-handle"></div>
     </div>
     <div class="result-labels">
-      <span>◀ Vorher</span>
-      <span>Nachher ▶</span>
+      <span>â—€ Vorher</span>
+      <span>Nachher â–¶</span>
     </div>
     <div class="cta-box">
-      <p>Gefällt dem Kunden das Ergebnis?</p>
+      <p>GefÃ¤llt dem Kunden das Ergebnis?</p>
       <div class="sub">Jetzt kostenloses Angebot anfragen</div>
       <a class="cta-wa" href="https://wa.me/4917915885760?text=Ich%20habe%20die%20KI-Vorschau%20gesehen%20und%20m%C3%B6chte%20ein%20kostenloses%20Angebot%20anfordern." target="_blank">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Angebot via WhatsApp
       </a>
-      <button class="new-photo-btn" onclick="resetTool()">🔄 Neues Foto analysieren</button>
+      <button class="new-photo-btn" onclick="resetTool()">ðŸ”„ Neues Foto analysieren</button>
     </div>
   </div>
 
 </main>
 
 <script>
-  // ── CONFIG ────────────────────────────────────────────────
-  // PIN ändern: Hier die 4-stellige Zahl anpassen
+  // â”€â”€ CONFIG â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // PIN Ã¤ndern: Hier die 4-stellige Zahl anpassen
   const CORRECT_PIN = "1234";
   const SESSION_KEY = "osmani_ki_auth";
 
-  // ── PIN LOGIC ─────────────────────────────────────────────
+  // â”€â”€ PIN LOGIC â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   let pinInput = "";
 
   function pinPress(digit) {
@@ -492,7 +493,7 @@
     document.getElementById("pin-overlay").style.display = "none";
   }
 
-  // ── STYLE SELECTOR ────────────────────────────────────────
+  // â”€â”€ STYLE SELECTOR â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   let selectedStyle = "garden";
 
   function selectStyle(btn) {
@@ -506,13 +507,13 @@
     btn.addEventListener("click", () => selectStyle(btn));
   });
 
-  // ── IMAGE HANDLING ────────────────────────────────────────
+  // â”€â”€ IMAGE HANDLING â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   let originalDataUrl = null;
 
   function handleFile(file) {
     if (!file) return;
     if (!file.type.startsWith("image/")) {
-      showError("Bitte ein Bild auswählen (JPG, PNG).");
+      showError("Bitte ein Bild auswÃ¤hlen (JPG, PNG).");
       return;
     }
     hideError();
@@ -553,7 +554,7 @@
     if (file) handleFile(file);
   });
 
-  // ── GENERATE ──────────────────────────────────────────────
+  // â”€â”€ GENERATE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   let pollInterval = null;
 
   async function generate() {
@@ -603,7 +604,7 @@
         clearInterval(pollInterval);
         setLoading(false);
         stopProgress();
-        showError("Zeitüberschreitung. Bitte erneut versuchen.");
+        showError("ZeitÃ¼berschreitung. Bitte erneut versuchen.");
         return;
       }
       try {
@@ -622,7 +623,7 @@
     }, 3000);
   }
 
-  // ── RESULT ────────────────────────────────────────────────
+  // â”€â”€ RESULT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   function showResult(imageUrl) {
     setLoading(false);
     stopProgress();
@@ -649,7 +650,7 @@
     document.getElementById("result-card").scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  // ── SLIDER ────────────────────────────────────────────────
+  // â”€â”€ SLIDER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   function initSlider() {
     const comparison = document.getElementById("comparison");
     const handle = document.getElementById("slider-handle");
@@ -681,7 +682,7 @@
     comparison.addEventListener("touchend", () => { dragging = false; });
   }
 
-  // ── RESET ─────────────────────────────────────────────────
+  // â”€â”€ RESET â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   function resetTool() {
     originalDataUrl = null;
     document.getElementById("preview-img").src = "";
@@ -694,7 +695,7 @@
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  // ── HELPERS ───────────────────────────────────────────────
+  // â”€â”€ HELPERS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   function setLoading(on) {
     document.getElementById("loading-card").classList.toggle("visible", on);
     document.getElementById("generate-btn").disabled = on;
