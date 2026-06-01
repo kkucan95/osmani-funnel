@@ -1338,7 +1338,7 @@
       <strong>Aktuell freie Termine für Sommer 2026</strong>
       <span class="promo-sub">Kostenlose Vor-Ort-Beratung in 30 Sekunden anfragen</span>
     </span>
-    <span class="promo-arrow">→</span>
+    <span class="promo-btn">Termin sichern →</span>
   </a>
   <style>
     #promo-banner {
@@ -1367,18 +1367,37 @@
       #header { top: 48px !important; }
       body { padding-top: 48px; }
     }
+    #promo-banner { cursor: pointer; }
     #promo-banner:hover { background: linear-gradient(90deg, #d4920a 0%, #f0a500 100%); }
+    #promo-banner:hover .promo-btn { background: #1a1f24; transform: translateY(-1px); }
     #promo-banner .promo-icon { font-size: 1.5rem; flex-shrink: 0; }
     #promo-banner .promo-text { flex: 1; display: flex; flex-direction: column; line-height: 1.3; }
     #promo-banner .promo-text strong { font-size: 0.95rem; }
     #promo-banner .promo-sub { font-size: 0.8rem; font-weight: 500; opacity: 0.85; }
-    #promo-banner .promo-arrow { font-size: 1.5rem; font-weight: 800; flex-shrink: 0; }
+    #promo-banner .promo-btn {
+      background: #2c6035;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      white-space: nowrap;
+      flex-shrink: 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+      transition: background 0.18s, transform 0.18s;
+      animation: promo-btn-pulse 2.4s ease-in-out infinite;
+    }
+    @keyframes promo-btn-pulse {
+      0%, 100% { box-shadow: 0 2px 6px rgba(0,0,0,0.18); }
+      50% { box-shadow: 0 2px 14px rgba(44,96,53,0.55); }
+    }
     @media (max-width: 600px) {
-      #promo-banner { padding: 0.6rem 1rem; gap: 0.6rem; }
+      #promo-banner { padding: 0.6rem 0.75rem; gap: 0.55rem; }
+      #promo-banner .promo-btn { padding: 0.45rem 0.7rem; font-size: 0.75rem; }
       #promo-banner .promo-text strong { font-size: 0.85rem; }
       #promo-banner .promo-sub { font-size: 0.72rem; }
       #promo-banner .promo-icon { font-size: 1.2rem; }
-      #promo-banner .promo-arrow { font-size: 1.2rem; }
+      #promo-banner .promo-sub { display: none; }
     }
   </style>
 
