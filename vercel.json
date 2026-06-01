@@ -1,6 +1,10 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "functions": {
+    "api/generate.js": { "maxDuration": 60 },
+    "api/poll.js": { "maxDuration": 10 }
+  },
   "headers": [
     {
       "source": "/(.*)",
