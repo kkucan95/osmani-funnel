@@ -184,12 +184,15 @@
 
     html { scroll-behavior: smooth; }
 
+    html { overflow-x: hidden; }
     body {
       font-family: 'Inter', sans-serif;
       color: var(--dark);
       background: var(--white);
       line-height: 1.65;
       overflow-x: hidden;
+      width: 100%;
+      max-width: 100vw;
     }
 
     img { display: block; width: 100%; height: 100%; object-fit: cover; }
@@ -776,6 +779,9 @@
       overflow: hidden;
       cursor: col-resize;
       user-select: none;
+      -webkit-user-select: none;
+      touch-action: none;        /* Browser scrollt nicht beim Wischen auf Slider */
+      -webkit-touch-callout: none;
     }
     .ba-after, .ba-before {
       position: absolute;
@@ -2216,11 +2222,22 @@
       }
 
       el.addEventListener('mousedown',  e => { dragging = true; setPos(e.clientX); });
-      el.addEventListener('touchstart', e => { dragging = true; setPos(e.touches[0].clientX); }, { passive: true });
+      // Touch: nicht-passiv damit wir preventDefault aufrufen können (verhindert Page-Scroll)
+      el.addEventListener('touchstart', e => {
+        dragging = true;
+        setPos(e.touches[0].clientX);
+        e.preventDefault();
+      }, { passive: false });
       window.addEventListener('mousemove',  e => { if (dragging) setPos(e.clientX); });
-      window.addEventListener('touchmove',  e => { if (dragging) setPos(e.touches[0].clientX); }, { passive: true });
+      window.addEventListener('touchmove',  e => {
+        if (dragging) {
+          setPos(e.touches[0].clientX);
+          e.preventDefault();
+        }
+      }, { passive: false });
       window.addEventListener('mouseup',  () => dragging = false);
       window.addEventListener('touchend', () => dragging = false);
+      window.addEventListener('touchcancel', () => dragging = false);
     });
 
     // --- Form submit mit GA4 Lead-Event ---
