@@ -70,4 +70,76 @@
       document.body.appendChild(container);
     });
   }
+
+  // ---- Telefon-Fallback: Wenn tel: blockiert ist (z.B. Facebook In-App-Browser),
+  //      Nummer in Zwischenablage kopieren + Toast zeigen
+  function showToast(text) {
+    var toast = document.createElement('div');
+    toast.textContent = text;
+    toast.style.cssText = 'position:fixed;left:50%;bottom:80px;transform:translateX(-50%);' +
+      'background:#1a1f24;color:#fff;padding:14px 20px;border-radius:10px;' +
+      'box-shadow:0 8px 28px rgba(0,0,0,.35);z-index:99999;font-weight:600;' +
+      'font-size:.95rem;max-width:90vw;text-align:center;opacity:0;' +
+      'transition:opacity .25s ease;';
+    document.body.appendChild(toast);
+    requestAnimationFrame(function() { toast.style.opacity = '1'; });
+    setTimeout(function() {
+      toast.style.opacity = '0';
+      setTimeout(function() { toast.remove(); }, 300);
+    }, 4500);
+  }
+
+  // Detect Facebook/Instagram in-app browser
+  var ua = navigator.userAgent || '';
+  var isInAppBrowser = /FBAN|FBAV|FB_IAB|Instagram|Line\/|MicroMessenger|TikTok/i.test(ua);
+
+  function attachPhoneFallback(link) {
+    link.addEventListener('click', function(ev) {
+      // Bei In-App-Browsern: Tel: oft blockiert → Nummer kopieren als Fallback
+      if (isInAppBrowser) {
+        ev.preventDefault();
+        var number = '+49 179 1588576';
+        var copy = function() {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            return navigator.clipboard.writeText(number);
+          }
+          // Legacy fallback
+          var ta = document.createElement('textarea');
+          ta.value = number;
+          ta.style.position = 'fixed';
+          ta.style.top = '-9999px';
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand('copy'); } catch (e) {}
+          ta.remove();
+          return Promise.resolve();
+        };
+        copy().then(function() {
+          showToast('📞 Telefonnummer kopiert: ' + number);
+        }).catch(function() {
+          showToast('📞 Bitte anrufen: ' + number);
+        });
+        return;
+      }
+      // Normale Browser: tel: funktioniert - aber Sicherheits-Nudge
+      // setTimeout: nach 1.5s prüfen ob noch im DOM (= tel: ist nicht abgegangen)
+      setTimeout(function() {
+        if (document.visibilityState === 'visible' && document.hasFocus()) {
+          // Browser ist immer noch sichtbar → tel: hat NICHT funktioniert
+          showToast('📞 Telefon-App nicht verfügbar? Nummer: +49 179 1588576');
+        }
+      }, 1500);
+    });
+  }
+
+  // Alle Telefon-Links auf der Seite + Floating-Call-Button absichern
+  function wirePhoneLinks() {
+    var phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+    phoneLinks.forEach(attachPhoneFallback);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', wirePhoneLinks);
+  } else {
+    wirePhoneLinks();
+  }
 })();
