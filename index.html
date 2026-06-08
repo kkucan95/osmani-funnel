@@ -564,6 +564,9 @@
     }
     .trust-icon { font-size: 1.2rem; }
     .trust-item strong { color: var(--white); font-weight: 700; }
+    a.trust-item { text-decoration: none; cursor: pointer; transition: color .15s, transform .15s; }
+    a.trust-item:hover { color: var(--accent); transform: translateY(-1px); }
+    a.trust-item:hover strong { color: var(--accent); }
 
     /* ============================================================
        SECTION BASE
@@ -1468,7 +1471,7 @@
   ============================================================ -->
   <div class="trust-bar">
     <div class="trust-item"><span class="trust-icon">🛡️</span><span><strong>Versicherter Betrieb</strong></span></div>
-    <div class="trust-item"><span class="trust-icon">📋</span><span><strong>Kostenloser Kostenvoranschlag</strong></span></div>
+    <a href="/anfrage" class="trust-item"><span class="trust-icon">📋</span><span><strong>Kostenloser Kostenvoranschlag</strong></span></a>
     <div class="trust-item"><span class="trust-icon">🔧</span><span><strong>Eigene Fachkräfte</strong> – kein Fremdeinsatz</span></div>
     <div class="trust-item"><span class="trust-icon">🌿</span><span><strong>Nachhaltige</strong> Materialien</span></div>
     <div class="trust-item"><span class="trust-icon">📍</span><span>Region <strong>Bietigheim-Bissingen</strong></span></div>
