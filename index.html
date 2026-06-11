@@ -877,9 +877,12 @@
       letter-spacing: .05em;
       z-index: 4;
     }
-    .project-body { padding: 22px; }
-    .project-body h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+    .project-body { padding: 22px; display: block; text-decoration: none; color: inherit; }
+    .project-body h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; transition: color .15s; }
     .project-body p  { font-size: .88rem; color: var(--mid); }
+    a.project-body:hover h3 { color: var(--green); }
+    a.project-body:hover .project-cta { color: var(--green-dark); gap: 10px; }
+    .project-cta { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; color: var(--green); font-weight: 700; font-size: .9rem; transition: gap .15s, color .15s; }
     .project-meta {
       display: flex;
       gap: 16px;
@@ -1587,14 +1590,15 @@
             <div class="project-tag">Terrasse</div>
             <div class="gallery-count">📷 5 Fotos</div>
           </div>
-          <div class="project-body">
+          <a href="/referenzen/terrasse-feinsteinzeug-bietigheim" class="project-body">
             <h3>Terrassengestaltung mit Feinsteinzeug</h3>
             <p>Großformatige Feinsteinzeugplatten, Rollrasen und Terrassenstufen – komplette Außenanlage neu gestaltet.</p>
             <div class="project-meta">
               <span>📍 Bietigheim-Bissingen</span>
               <span>⏱ 8 Tage Bauzeit</span>
             </div>
-          </div>
+            <span class="project-cta">Projekt ansehen →</span>
+          </a>
         </div>
 
         <!-- Projekt 2: Einfahrt-Sanierung -->
@@ -1607,14 +1611,15 @@
             <div class="ba-label ba-label-after">Nachher</div>
             <div class="project-tag">Einfahrt</div>
           </div>
-          <div class="project-body">
+          <a href="/referenzen/einfahrt-terrasse-tamm" class="project-body">
             <h3>Einfahrt &amp; Terrasse komplett neu</h3>
             <p>Alter Belag komplett entfernt, neues Planum, großformatige Platten und Rasenfläche angelegt.</p>
             <div class="project-meta">
               <span>📍 Tamm</span>
               <span>⏱ 5 Tage Bauzeit</span>
             </div>
-          </div>
+            <span class="project-cta">Projekt ansehen →</span>
+          </a>
         </div>
 
         <!-- Projekt 3: Neubau Außenanlagen -->
@@ -1627,14 +1632,15 @@
             <div class="ba-label ba-label-after">Fertig</div>
             <div class="project-tag">Neubau</div>
           </div>
-          <div class="project-body">
+          <a href="/referenzen/aussenanlagen-sachsenheim" class="project-body">
             <h3>Neubau-Außenanlagen komplett</h3>
             <p>Dunkle Pflastersteine, Entwässerungskanäle und Bordsteinarbeiten – fertig in einer Woche.</p>
             <div class="project-meta">
               <span>📍 Sachsenheim</span>
               <span>⏱ 7 Tage Bauzeit</span>
             </div>
-          </div>
+            <span class="project-cta">Projekt ansehen →</span>
+          </a>
         </div>
 
       </div>
