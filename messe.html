@@ -41,6 +41,7 @@
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { height: 100%; }
+    body, label, button, a, input, select, textarea { touch-action: manipulation; }
     body {
       font-family: 'Inter', sans-serif;
       color: var(--text);
@@ -597,13 +598,6 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  // Prevent iOS double-tap zoom
-  let lastTouch = 0;
-  document.addEventListener('touchend', function(e) {
-    const now = Date.now();
-    if (now - lastTouch <= 350) e.preventDefault();
-    lastTouch = now;
-  }, { passive: false });
 })();
 </script>
 
