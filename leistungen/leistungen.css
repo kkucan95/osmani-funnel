@@ -65,11 +65,16 @@ a:hover { text-decoration: underline; }
 .faq-a { padding: 1rem 1.25rem; font-size: 0.95rem; }
 
 .cta-box { background: linear-gradient(135deg, var(--green-dark), var(--green)); border-radius: 12px; padding: 2.5rem 2rem; text-align: center; margin: 3rem 0; color: #fff; }
-.cta-box h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.75rem; }
+.cta-box h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.75rem; color: #fff; }
 .cta-box p { opacity: 0.9; margin-bottom: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto; }
 .cta-btn { display: inline-block; background: var(--accent); color: #fff; padding: 0.95rem 2.25rem; border-radius: 8px; font-weight: 700; font-size: 1rem; }
 .cta-btn:hover { background: #d4920a; text-decoration: none; }
 .cta-sub { margin-top: 1rem; font-size: 0.9rem; opacity: 0.85; }
+
+/* Kompakter Inline-CTA für die Seitenmitte */
+.inline-cta { display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; flex-wrap: wrap; background: linear-gradient(135deg, var(--green-dark), var(--green)); color: #fff; border-radius: 10px; padding: 1.35rem 1.6rem; margin: 2.5rem 0; }
+.inline-cta p { margin: 0; font-weight: 600; font-size: 1.05rem; flex: 1; min-width: 220px; }
+.inline-cta .cta-btn { white-space: nowrap; }
 .cta-sub a { color: var(--accent); font-weight: 600; }
 
 .related { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
