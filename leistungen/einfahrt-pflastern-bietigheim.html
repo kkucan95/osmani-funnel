@@ -159,13 +159,55 @@
   Einfahrt pflastern
 </div>
 
-<header class="hero">
-  <img src="/imgs/einfahrt.jpg" alt="Professionell gepflasterte Einfahrt in Bietigheim-Bissingen von Osmani GmbH" />
-  <div class="hero-overlay">
-    <span class="hero-category">Pflasterarbeiten</span>
-    <h1>Einfahrt pflastern in Bietigheim-Bissingen</h1>
-    <p class="hero-meta">Beton · Granit · Naturstein · Klinker — alles aus einer Hand</p>
-    <a href="/anfrage" class="hero-cta">Gratis Vor-Ort-Termin sichern →</a>
+<style>
+  /* Einfahrt-Hero Slideshow (Startseiten-Stil, eigene th-Klassen) */
+  .th-hero{position:relative;min-height:78vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#1c2a1e;}
+  .th-slides{position:absolute;inset:0;overflow:hidden;z-index:0;}
+  .th-slide{position:absolute;inset:0;background-size:cover;background-position:center 55%;background-repeat:no-repeat;opacity:0;animation:thFade 35s ease-in-out infinite;transform:scale(1.04);}
+  .th-slide.s1{background-image:url('/imgs/einfahrt.jpg');animation-delay:0s;}
+  .th-slide.s2{background-image:url('/imgs/einfahrt-ki-1.jpg');animation-delay:7s;}
+  .th-slide.s3{background-image:url('/imgs/einfahrt-ki-2.jpg');animation-delay:14s;}
+  .th-slide.s4{background-image:url('/imgs/einfahrt-ki-3.jpg');animation-delay:21s;}
+  .th-slide.s5{background-image:url('/imgs/p3-nachher.jpg');animation-delay:28s;}
+  @keyframes thFade{0%{opacity:0;transform:scale(1.06);}4%{opacity:1;transform:scale(1.04);}20%{opacity:1;transform:scale(1);}24%{opacity:0;transform:scale(1);}100%{opacity:0;transform:scale(1.06);}}
+  .th-slides::after{content:'';position:absolute;inset:0;background:linear-gradient(165deg,rgba(10,22,12,.78) 0%,rgba(15,32,18,.55) 45%,rgba(10,22,12,.8) 100%);z-index:1;}
+  .th-content{position:relative;z-index:2;width:100%;max-width:820px;margin:0 auto;padding:90px 5% 80px;text-align:center;color:#fff;}
+  .th-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(58,125,68,.28);border:1px solid rgba(58,125,68,.55);color:#a8e6b0;font-size:.8rem;font-weight:600;padding:6px 16px;border-radius:50px;margin-bottom:22px;letter-spacing:.05em;text-transform:uppercase;}
+  .th-badge .dot{width:6px;height:6px;background:#a8e6b0;border-radius:50%;display:inline-block;}
+  .th-title{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:800;line-height:1.12;margin:0 0 18px;text-shadow:0 2px 16px rgba(0,0,0,.4);}
+  .th-title .hl{color:#b8eabf;}
+  .th-sub{font-size:1.15rem;color:rgba(255,255,255,.88);margin:0 auto 32px;max-width:600px;line-height:1.6;text-shadow:0 1px 8px rgba(0,0,0,.35);}
+  .th-btns{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-bottom:40px;}
+  .th-btn-primary{background:#3a7d44;color:#fff;padding:16px 34px;border-radius:10px;font-size:1.05rem;font-weight:700;text-decoration:none;box-shadow:0 6px 20px rgba(58,125,68,.5);transition:background .2s,transform .2s;}
+  .th-btn-primary:hover{background:#46944f;transform:translateY(-2px);}
+  .th-btn-phone{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.13);color:#fff;padding:16px 28px;border-radius:10px;font-size:1.05rem;font-weight:700;text-decoration:none;border:2px solid rgba(255,255,255,.4);transition:background .2s,border-color .2s;white-space:nowrap;}
+  .th-btn-phone:hover{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.75);}
+  .th-stats{display:flex;gap:36px;justify-content:center;flex-wrap:wrap;}
+  .th-stat-num{font-size:1.7rem;font-weight:800;color:#fff;}
+  .th-stat-label{font-size:.82rem;color:rgba(255,255,255,.8);letter-spacing:.03em;}
+  @media(max-width:768px){.th-slide{background-position:center 40%;}.th-content{padding:70px 5% 60px;}.th-stats{gap:24px;}}
+</style>
+<header class="th-hero">
+  <div class="th-slides">
+    <div class="th-slide s1"></div>
+    <div class="th-slide s2"></div>
+    <div class="th-slide s3"></div>
+    <div class="th-slide s4"></div>
+    <div class="th-slide s5"></div>
+  </div>
+  <div class="th-content">
+    <div class="th-badge"><span class="dot"></span> Pflasterarbeiten · Bietigheim-Bissingen &amp; Region</div>
+    <h1 class="th-title">Einfahrt pflastern in <span class="hl">Bietigheim-Bissingen</span></h1>
+    <p class="th-sub">Beton · Granit · Naturstein &amp; Klinker – fachgerechter Unterbau, saubere Ausführung. Über 15 Jahre Erfahrung, mehr als 500 Projekte in der Region.</p>
+    <div class="th-btns">
+      <a href="/anfrage" class="th-btn-primary">Gratis Vor-Ort-Termin sichern →</a>
+      <a href="tel:+491791588576" class="th-btn-phone" data-phone>📞 0179 1588576</a>
+    </div>
+    <div class="th-stats">
+      <div class="th-stat"><div class="th-stat-num">15+</div><div class="th-stat-label">Jahre Erfahrung</div></div>
+      <div class="th-stat"><div class="th-stat-num">500+</div><div class="th-stat-label">Projekte</div></div>
+      <div class="th-stat"><div class="th-stat-num">5,0 ★</div><div class="th-stat-label">Google-Bewertung</div></div>
+    </div>
   </div>
 </header>
 
@@ -178,6 +220,27 @@
        ✅ <strong>Kostenlose Beratung vor Ort</strong> in Bietigheim, Ludwigsburg, Tamm, Sachsenheim und Umgebung.<br>
        ✅ <strong>Über 500 fertiggestellte Projekte</strong> in der Region.</p>
   </div>
+
+  <style>
+  .ph-phases{margin:2.5rem 0;}
+  .ph-phases h2{margin-bottom:.4rem;}
+  .ph-intro{color:#555;margin:0 0 1.25rem;}
+  .ph-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .ph-card{margin:0;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.08);}
+  .ph-card img{width:100%;height:230px;object-fit:cover;object-position:center;display:block;}
+  .ph-card figcaption{display:flex;align-items:center;gap:8px;padding:12px 14px;font-weight:700;color:#1a1f24;font-size:.95rem;}
+  .ph-num{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;background:#3a7d44;color:#fff;border-radius:50%;font-size:.85rem;flex-shrink:0;}
+  @media(max-width:640px){.ph-grid{grid-template-columns:1fr;}.ph-card img{height:260px;}}
+</style>
+<section class="ph-phases">
+  <h2>So entsteht Ihre Einfahrt – Schritt für Schritt</h2>
+  <p class="ph-intro">Vom ersten Spatenstich bis zur fertigen Einfahrt – alles aus einer Hand, fachgerecht ausgeführt. Ein echtes Projekt aus der Region:</p>
+  <div class="ph-grid">
+    <figure class="ph-card"><img src="/imgs/p-vorher2.jpg" alt="Einfahrt Bietigheim-Bissingen – Erdarbeiten und Aushub" loading="lazy" decoding="async"><figcaption><span class="ph-num">1</span> Erdarbeiten &amp; Aushub</figcaption></figure>
+    <figure class="ph-card"><img src="/imgs/p-vorher1.jpg" alt="Einfahrt Bietigheim-Bissingen – fachgerechter Schotterunterbau" loading="lazy" decoding="async"><figcaption><span class="ph-num">2</span> Fachgerechter Unterbau</figcaption></figure>
+    <figure class="ph-card"><img src="/imgs/p-vorher3.jpg" alt="Fertig gepflasterte Einfahrt in Bietigheim-Bissingen" loading="lazy" decoding="async"><figcaption><span class="ph-num">3</span> Fertige Einfahrt</figcaption></figure>
+  </div>
+</section>
 
   <h2>Unsere Leistungen rund um die Pflastereinfahrt</h2>
   <p>Egal ob Neubau, Sanierung oder Erweiterung – wir übernehmen jeden Schritt für Ihre neue Einfahrt:</p>
