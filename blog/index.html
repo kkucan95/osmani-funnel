@@ -125,10 +125,55 @@
 </head>
 <body>
 
-<nav class="nav">
-  <a href="https://garten-landschaftsbau-bietigheim.de" class="nav-logo">Galabau <span>Osmani</span><br><small style="font-weight:400;font-size:0.75rem;opacity:0.7">Bietigheim-Bissingen</small></a>
-  <a href="https://garten-landschaftsbau-bietigheim.de/#kontakt" class="nav-cta">Kostenlos anfragen</a>
-</nav>
+<style>
+  .lp-promo{display:flex;align-items:center;justify-content:center;gap:.7rem;background:linear-gradient(90deg,#f0a500 0%,#f8b733 100%);color:#1a1f24;padding:.6rem 1rem;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,.15);}
+  .lp-promo .pi{font-size:1.3rem;}
+  .lp-promo .pt{display:flex;flex-direction:column;line-height:1.25;}
+  .lp-promo .pt strong{font-size:.92rem;}
+  .lp-promo .pt em{font-style:normal;font-size:.78rem;opacity:.85;}
+  .lp-promo .pb{background:#2c6035;color:#fff;padding:.45rem .9rem;border-radius:6px;font-size:.82rem;font-weight:700;white-space:nowrap;}
+  @media(max-width:600px){.lp-promo .pt em{display:none;}}
+  .lp-nav{position:relative;display:flex;align-items:center;justify-content:space-between;background:#1a1f24;padding:.7rem 1.25rem;gap:12px;}
+  .lp-logo{color:#fff;font-weight:800;font-size:1.02rem;line-height:1.2;text-decoration:none;}
+  .lp-logo span{color:#f0a500;}
+  .lp-logo small{display:block;font-size:.72rem;font-weight:500;opacity:.8;}
+  .lp-right{display:flex;align-items:center;gap:10px;}
+  .lp-cta{background:#f0a500;color:#1a1f24;padding:.55rem 1rem;border-radius:8px;font-weight:700;font-size:.88rem;text-decoration:none;white-space:nowrap;}
+  .lp-burger{display:flex;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer;padding:7px;}
+  .lp-burger span{width:24px;height:2px;background:#fff;display:block;border-radius:2px;}
+  .lp-menu{position:absolute;top:100%;right:12px;margin-top:4px;background:#fff;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.22);min-width:210px;padding:8px;display:none;z-index:60;}
+  .lp-menu.open{display:block;}
+  .lp-menu a{display:block;padding:11px 14px;color:#1a1f24;text-decoration:none;font-weight:600;font-size:.95rem;border-radius:6px;}
+  .lp-menu a:hover{background:#f5f7f5;}
+  @media(max-width:420px){.lp-cta{display:none;}}
+</style>
+<a href="/anfrage" class="lp-promo">
+  <span class="pi">🌞</span>
+  <span class="pt"><strong>Aktuell freie Termine für Sommer 2026</strong><em>Kostenlose Vor-Ort-Beratung in 30 Sekunden anfragen</em></span>
+  <span class="pb">Termin sichern →</span>
+</a>
+<header class="lp-nav">
+  <a href="/" class="lp-logo">Garten &amp; Landschaftsbau <span>Osmani GmbH</span><small>Bietigheim-Bissingen</small></a>
+  <div class="lp-right">
+    <a href="/anfrage" class="lp-cta">Kostenloser Termin</a>
+    <button class="lp-burger" aria-label="Menü öffnen" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+  <nav class="lp-menu" id="lp-menu" aria-label="Hauptmenü">
+    <a href="/">Startseite</a>
+    <a href="/leistungen/">Leistungen</a>
+    <a href="/referenzen/">Referenzen</a>
+    <a href="/ueber-uns">Über uns</a>
+    <a href="/kontakt">Kontakt</a>
+  </nav>
+</header>
+<script>
+  (function(){
+    var b=document.querySelector('.lp-burger'),m=document.getElementById('lp-menu');
+    if(!b||!m)return;
+    b.addEventListener('click',function(e){e.stopPropagation();var o=m.classList.toggle('open');b.setAttribute('aria-expanded',o);});
+    document.addEventListener('click',function(){m.classList.remove('open');b.setAttribute('aria-expanded',false);});
+  })();
+</script>
 
 <header class="page-header">
   <h1>Ratgeber & Tipps</h1>
