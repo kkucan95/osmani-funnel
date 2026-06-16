@@ -151,6 +151,63 @@
 
 <main class="container article-body">
 
+<style>
+  .rg-wrap{margin:0 0 2rem;}
+  .rg-box{position:relative;width:100%;height:440px;background:#161b14;border-radius:14px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.18);}
+  .rg-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .8s ease;}
+  .rg-slide.active{opacity:1;}
+  .rg-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.45);color:#fff;border:none;width:42px;height:42px;border-radius:50%;font-size:1.5rem;line-height:1;cursor:pointer;z-index:3;display:flex;align-items:center;justify-content:center;}
+  .rg-btn:hover{background:rgba(0,0,0,.7);}
+  .rg-prev{left:12px;} .rg-next{right:12px;}
+  .rg-count{position:absolute;top:12px;right:14px;background:rgba(0,0,0,.5);color:#fff;font-size:.8rem;padding:3px 10px;border-radius:20px;z-index:3;}
+  .rg-dots{position:absolute;bottom:12px;left:0;right:0;display:flex;gap:6px;justify-content:center;z-index:3;flex-wrap:wrap;padding:0 10px;}
+  .rg-dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.45);border:none;cursor:pointer;padding:0;}
+  .rg-dot.active{background:#f0a500;}
+  .rg-cap{text-align:center;color:#666;font-size:.92rem;margin:.7rem 0 0;}
+  @media(max-width:640px){.rg-box{height:300px;}}
+</style>
+<div class="rg-wrap">
+  <div class="rg-box" id="refgal">
+    <img class="rg-slide active" src="/imgs/Referenzen/ref-01.jpg" alt="Referenzprojekt von Garten &amp; Landschaftsbau Osmani Bietigheim - Bild 1" />
+    <img class="rg-slide" data-src="/imgs/Referenzen/ref-02.jpg" alt="Referenzprojekt von Garten &amp; Landschaftsbau Osmani Bietigheim - Bild 2" />
+    <img class="rg-slide" data-src="/imgs/Referenzen/ref-03.jpg" alt="Referenzprojekt von Garten &amp; Landschaftsbau Osmani Bietigheim - Bild 3" />
+    <img class="rg-slide" data-src="/imgs/Referenzen/ref-04.jpg" alt="Referenzprojekt von Garten &amp; Landschaftsbau Osmani Bietigheim - Bild 4" />
+    <img class="rg-slide" data-src="/imgs/Referenzen/ref-05.jpg" alt="Referenzprojekt von Garten &amp; Landschaftsbau Osmani Bietigheim - Bild 5" />
+    <img class="rg-slide" data-src="/imgs/Referenzen/ref-06.jpg" alt="Referenzprojekt von Garten &amp; Landschaftsbau Osmani Bietigheim - Bild 6" />
+    <img class="rg-slide" data-src="/imgs/Referenzen/ref-07.jpg" alt="Referenzprojekt von Garten &amp; Landschaftsbau Osmani Bietigheim - Bild 7" />
+    <img class="rg-slide" data-src="/imgs/Referenzen/ref-08.jpg" alt="Referenzprojekt von Garten &amp; Landschaftsbau Osmani Bietigheim - Bild 8" />
+    <img class="rg-slide" data-src="/imgs/Referenzen/ref-09.jpg" alt="Referenzprojekt von Garten &amp; Landschaftsbau Osmani Bietigheim - Bild 9" />
+    <img class="rg-slide" data-src="/imgs/Referenzen/ref-10.jpg" alt="Referenzprojekt von Garten &amp; Landschaftsbau Osmani Bietigheim - Bild 10" />
+    <img class="rg-slide" data-src="/imgs/Referenzen/ref-11.jpg" alt="Referenzprojekt von Garten &amp; Landschaftsbau Osmani Bietigheim - Bild 11" />
+    <img class="rg-slide" data-src="/imgs/Referenzen/ref-12.jpg" alt="Referenzprojekt von Garten &amp; Landschaftsbau Osmani Bietigheim - Bild 12" />
+    <img class="rg-slide" data-src="/imgs/Referenzen/ref-13.jpg" alt="Referenzprojekt von Garten &amp; Landschaftsbau Osmani Bietigheim - Bild 13" />
+    <img class="rg-slide" data-src="/imgs/Referenzen/ref-14.jpg" alt="Referenzprojekt von Garten &amp; Landschaftsbau Osmani Bietigheim - Bild 14" />
+    <button class="rg-btn rg-prev" aria-label="Vorheriges Bild">&#8249;</button>
+    <button class="rg-btn rg-next" aria-label="Nächstes Bild">&#8250;</button>
+    <span class="rg-count" id="rg-count">1 / 14</span>
+    <div class="rg-dots" id="rg-dots"></div>
+  </div>
+  <p class="rg-cap">Echte Projekte von Garten &amp; Landschaftsbau Osmani - Einfahrten, Terrassen, Carports &amp; mehr aus der Region.</p>
+</div>
+<script>
+  (function(){
+    var box=document.getElementById('refgal'); if(!box) return;
+    var slides=[].slice.call(box.querySelectorAll('.rg-slide'));
+    var dotsWrap=document.getElementById('rg-dots'), countEl=document.getElementById('rg-count');
+    var n=slides.length, cur=0, timer;
+    function loadImg(i){var s=slides[i]; if(s && s.dataset.src && !s.getAttribute('src')){ s.setAttribute('src', s.dataset.src); }}
+    slides.forEach(function(_,i){var d=document.createElement('button');d.className='rg-dot'+(i===0?' active':'');d.setAttribute('aria-label','Bild '+(i+1));d.addEventListener('click',function(){go(i);reset();});dotsWrap.appendChild(d);});
+    var dots=[].slice.call(dotsWrap.children);
+    function go(i){cur=(i+n)%n;for(var j=0;j<n;j++){slides[j].classList.toggle('active',j===cur);dots[j].classList.toggle('active',j===cur);}countEl.textContent=(cur+1)+' / '+n;loadImg(cur);loadImg((cur+1)%n);}
+    function next(){go(cur+1);} function prev(){go(cur-1);}
+    function reset(){clearInterval(timer);timer=setInterval(next,4000);}
+    box.querySelector('.rg-next').addEventListener('click',function(){next();reset();});
+    box.querySelector('.rg-prev').addEventListener('click',function(){prev();reset();});
+    loadImg(1);
+    reset();
+  })();
+</script>
+
   <p class="lead">Hier sehen Sie ausgewählte Projekte aus den letzten Jahren – ehrlich dokumentiert mit Vorher- und Nachher-Bildern, eingesetzten Materialien und tatsächlicher Bauzeit. <strong>Über 500 fertiggestellte Projekte</strong> hat unser Team in den letzten 15 Jahren in der Region Ludwigsburg umgesetzt.</p>
 
   <div class="ref-grid">
