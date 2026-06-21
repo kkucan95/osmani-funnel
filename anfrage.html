@@ -436,16 +436,6 @@
       <input type="hidden" name="from_name" value="Website Anfrage Osmani">
       <input type="checkbox" name="botcheck" style="display:none">
 
-      <!-- 1. Wohnsituation -->
-      <div class="field">
-        <label>Sind Sie… <span class="req">*</span></label>
-        <div class="chip-group" id="roleChips">
-          <label class="chip"><input type="radio" name="role" value="Hausbesitzer"><span>Haus­besitzer</span></label>
-          <label class="chip"><input type="radio" name="role" value="Mieter"><span>Mieter</span></label>
-        </div>
-        <div class="error-msg">Bitte auswählen.</div>
-      </div>
-
       <!-- 2. Projekttyp -->
       <div class="field">
         <label>Worum geht es? <span class="req">*</span></label>
@@ -553,10 +543,6 @@
     const plz = document.getElementById('plz').value.trim();
     if (plz.length < 2) { markError('plz'); ok = false; }
 
-    if (!form.querySelector('input[name="role"]:checked')) {
-      document.getElementById('roleChips').closest('.field').classList.add('has-error');
-      ok = false;
-    }
     if (!form.querySelector('input[name="project"]:checked')) {
       document.getElementById('projectChips').closest('.field').classList.add('has-error');
       ok = false;
