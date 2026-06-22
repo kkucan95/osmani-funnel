@@ -241,6 +241,56 @@
     <a href="https://g.page/r/CcnpSWYX1zzrEBE/review" target="_blank" rel="noopener" class="gr-btn">Auf Google ansehen</a>
   </div>
 
+  <style>
+    .pg-wrap{margin:2rem 0 2.4rem;}
+    .pg-box{position:relative;width:100%;height:440px;background:#161b14;border-radius:14px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.18);}
+    .pg-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .8s ease;}
+    .pg-slide.active{opacity:1;}
+    .pg-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.45);color:#fff;border:none;width:42px;height:42px;border-radius:50%;font-size:1.5rem;line-height:1;cursor:pointer;z-index:3;display:flex;align-items:center;justify-content:center;}
+    .pg-btn:hover{background:rgba(0,0,0,.7);}
+    .pg-prev{left:12px;} .pg-next{right:12px;}
+    .pg-count{position:absolute;top:12px;right:14px;background:rgba(0,0,0,.5);color:#fff;font-size:.8rem;padding:3px 10px;border-radius:20px;z-index:3;}
+    .pg-dots{position:absolute;bottom:12px;left:0;right:0;display:flex;gap:6px;justify-content:center;z-index:3;flex-wrap:wrap;padding:0 10px;}
+    .pg-dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.45);border:none;cursor:pointer;padding:0;}
+    .pg-dot.active{background:#f0a500;}
+    .pg-cap{text-align:center;color:#666;font-size:.92rem;margin:.7rem 0 0;}
+    @media(max-width:640px){.pg-box{height:300px;}}
+  </style>
+  <h2>Unsere Terrassen-Projekte aus der Region</h2>
+  <div class="pg-wrap">
+    <div class="pg-box" id="projgal">
+      <img class="pg-slide active" src="/imgs/t1.jpg" alt="Fertige Terrasse von Osmani in Bietigheim-Bissingen - Projekt 1" />
+      <img class="pg-slide" data-src="/imgs/t2.jpg" alt="Terrassenbau Feinsteinzeug - Projekt 2" />
+      <img class="pg-slide" data-src="/imgs/t3.jpg" alt="Terrasse mit Naturstein - Projekt 3" />
+      <img class="pg-slide" data-src="/imgs/t4.jpg" alt="Terrassenprojekt Raum Ludwigsburg - Projekt 4" />
+      <img class="pg-slide" data-src="/imgs/t5.jpg" alt="Hochwertige Terrasse von Osmani - Projekt 5" />
+      <img class="pg-slide" data-src="/imgs/terrasse.jpg" alt="Fertige Terrassenanlage - Projekt 6" />
+      <button class="pg-btn pg-prev" aria-label="Vorheriges Bild">&#8249;</button>
+      <button class="pg-btn pg-next" aria-label="Nächstes Bild">&#8250;</button>
+      <span class="pg-count" id="pg-count">1 / 6</span>
+      <div class="pg-dots" id="pg-dots"></div>
+    </div>
+    <p class="pg-cap">Echte Terrassen-Projekte von Garten &amp; Landschaftsbau Osmani aus der Region.</p>
+  </div>
+  <script>
+  (function(){
+    var box=document.getElementById('projgal'); if(!box) return;
+    var slides=[].slice.call(box.querySelectorAll('.pg-slide'));
+    var dotsWrap=document.getElementById('pg-dots'), countEl=document.getElementById('pg-count');
+    var n=slides.length, cur=0, timer;
+    function loadImg(i){var s=slides[i]; if(s && s.dataset.src && !s.getAttribute('src')){ s.setAttribute('src', s.dataset.src); }}
+    slides.forEach(function(_,i){var d=document.createElement('button');d.className='pg-dot'+(i===0?' active':'');d.setAttribute('aria-label','Bild '+(i+1));d.addEventListener('click',function(){go(i);reset();});dotsWrap.appendChild(d);});
+    var dots=[].slice.call(dotsWrap.children);
+    function go(i){cur=(i+n)%n;for(var j=0;j<n;j++){slides[j].classList.toggle('active',j===cur);dots[j].classList.toggle('active',j===cur);}countEl.textContent=(cur+1)+' / '+n;loadImg(cur);loadImg((cur+1)%n);}
+    function next(){go(cur+1);} function prev(){go(cur-1);}
+    function reset(){clearInterval(timer);timer=setInterval(next,4000);}
+    box.querySelector('.pg-next').addEventListener('click',function(){next();reset();});
+    box.querySelector('.pg-prev').addEventListener('click',function(){prev();reset();});
+    loadImg(1);
+    reset();
+  })();
+  </script>
+
   <h2>Welche Terrassen-Materialien wir verbauen</h2>
   <table class="cost-table">
     <thead>
