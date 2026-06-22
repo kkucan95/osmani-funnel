@@ -429,6 +429,27 @@
       </div>
     </div>
 
+    <style>
+      .quick-contact{margin:0 0 1.5rem;text-align:center;}
+      .quick-contact .qc-label{font-size:.95rem;color:#3a4a3c;font-weight:700;margin:0 0 .75rem;}
+      .qc-btns{display:flex;gap:12px;}
+      .qc-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:16px 12px;border-radius:12px;font-weight:700;font-size:1.05rem;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.14);transition:transform .15s,filter .15s;}
+      .qc-btn:active{transform:scale(.97);}
+      .qc-wa{background:#25D366;color:#fff;}
+      .qc-call{background:#2c6035;color:#fff;}
+      .qc-or{display:flex;align-items:center;gap:12px;color:#9aa39a;font-size:.82rem;font-weight:600;margin:1.3rem 0 .2rem;}
+      .qc-or::before,.qc-or::after{content:'';flex:1;height:1px;background:#e2e6e2;}
+      @media(max-width:360px){.qc-btn{font-size:.95rem;padding:14px 8px;}}
+    </style>
+    <div class="quick-contact">
+      <p class="qc-label">⚡ Am schnellsten – ganz ohne Formular:</p>
+      <div class="qc-btns">
+        <a href="https://wa.me/491791588576?text=Hallo%20Osmani%20Galabau%2C%20ich%20m%C3%B6chte%20eine%20kostenlose%20Vor-Ort-Beratung%20anfragen." class="qc-btn qc-wa" target="_blank" rel="noopener">💬 WhatsApp</a>
+        <a href="tel:+491791588576" class="qc-btn qc-call" data-phone>📞 Anrufen</a>
+      </div>
+      <div class="qc-or">oder Formular ausfüllen</div>
+    </div>
+
     <form id="leadForm" class="form-card" novalidate>
       <!-- Web3Forms Access Key – HIER EINTRAGEN -->
       <input type="hidden" name="access_key" value="803d89fe-8268-458a-8968-68c666c901f5">
